@@ -31,5 +31,86 @@
                 "day":14,
                 "year":2022
             }
+        },
+        {
+            "id":"prop3",
+            "type":"Bungalow",
+            "bedrooms":2,
+            "price":525000,
+            "tenure":"Freehold",
+            "description":"A beautifully presented two bedroom detached bungalow located in a quiet cul-de-sac in the popular St. Mary Cray area. This property features a spacious living room, modern kitchen, and a well-maintained garden. The bungalow is close to local amenities, schools, and transport links.",
+            "location":"Maple Drive, St. Mary Cray, Orpington BR5",
+            "picture":"images/prop3pic1small.jpg",
+            "url":"properties/prop3.html",
+            "added": {
+                "month":"November",
+                "day":5,
+                "year":2023
+            }
+        },
+        {
+            "id":"prop4",
+            "type":"Apartment",
+            "bedrooms":1,
+            "price":299995,
+            "tenure":"Leasehold",
+            "description":"Modern one-bedroom apartment located in the heart of Orpington. This apartment offers an open-plan living area, a fully equipped kitchen, and a balcony with stunning views. Ideal for first-time buyers or investors, it is close to shops, restaurants, and public transport.",
+            "location":"High Street, Orpington BR6",
+            "picture":"images/prop4pic1small.jpg",
+            "url":"properties/prop4.html",
+            "added": {
+                "month":"January",
+                "day":20,
+                "year":2024
+            }
+        },
+        {
+            "id":"prop5",
+            "type":"Townhouse",
+            "bedrooms":4,
+            "price":850000,
+            "tenure":"Freehold",
+            "description":"Spacious four-bedroom townhouse located in a desirable neighborhood. This property features a large living room, modern kitchen with dining area, and a private garden. The townhouse is close to excellent schools, parks, and transport links to London.",
+            "location":"Elm Street, Orpington BR5",
+            "picture":"images/prop5pic1small.jpg",
+            "url":"properties/prop5.html",
+            "added": {
+                "month":"March",
+                "day":15,
+                "year":2024
+            }
+        },
+        {
+            "id":"prop6",
+            "type":"Cottage",
+            "bedrooms":2,
+            "price":625000,
+            "tenure":"Freehold",
+            "description":"Charming two-bedroom cottage located in a peaceful village setting. This property boasts a cozy living room with a fireplace, a country-style kitchen, and a beautiful garden. Perfect for those seeking a tranquil lifestyle while still being within reach of Orpington's amenities.",
+            "location":"Willow Lane, Village Near Orpington BR6",
+            "picture":"images/prop6pic1small.jpg",
+            "url":"properties/prop6.html",
+            "added": {
+                "month":"May",
+                "day":10,
+                "year":2024
+            }
+        },
+        {
+            "id":"prop7",
+            "type":"Duplex",
+            "bedrooms":3,
+            "price":720000,
+            "tenure":"Leasehold",
+            "description":"Stylish three-bedroom duplex apartment located in a modern development. This property features an open-plan living area, a contemporary kitchen, and a balcony with city views. The duplex is conveniently located near shopping centers, restaurants, and public transport.",
+            "location":"Riverfront Development, Orpington BR5",
+            "picture":"images/prop7pic1small.jpg",
+            "url":"properties/prop7.html",
+            "added": {
+                "month":"June",
+                "day":1,
+                "year":2024
+            }
         }
-]}
+    ]
+}
