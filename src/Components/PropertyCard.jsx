@@ -1,7 +1,7 @@
 import React from 'react';
 import './PropertyCard.css';
 
-//@param {Object} property - An Object containing the property data to display
+/** @param {Object} property - An Object containing the property data to display */
 
 const PropertyCard = ({property}) => {
     return (
@@ -15,9 +15,14 @@ const PropertyCard = ({property}) => {
 
             {/* Property Details Section */}
             <div className='property-details'>
-                <h3 className = "property-type">{property.type}</h3>
+                <h3 className = "property-type">{property.type} with {property.bedrooms} bedrooms</h3>
+                <p className = "property-description">{property.description.length > 100 
+                ? property.description.substring(0, 100) + "..." 
+                : property.description} </p>
                 <p className = "property-location">{property.location}</p>
                 <p className = "property-price">£{property.price.toLocaleString()}</p>
+
+                <button className="explore-button">Explore Home</button>
             </div>
         </div>
     )
