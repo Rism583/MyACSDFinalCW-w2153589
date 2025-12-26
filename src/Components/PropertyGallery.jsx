@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropertyCard from './PropertyCard';
 
 
 const PropertGallery = () => {
@@ -26,4 +27,25 @@ const PropertGallery = () => {
             });
     } , []); //Empty dependency array to run only once on component mount
 
+    return (
+        
+        //Main container for the property gallery
+        <div className="property-gallery">
+            <h1>Featured Properties</h1>
 
+            <div className="property-grid">
+
+                {/* Mapping through the properties array to create PropertyCard components */}  
+                {properties.map((item) => (
+                    <PropertyCard
+                        key={item.id} //unique key for each property 
+                        property={item} //passing one entire property data into the PropertyCard
+                    />
+                ))}
+            </div>
+            {/* Loading message if properties are not yet loaded */}
+            {properties.length === 0 && (<p>Loading properties...</p>)}
+        </div>
+    )
+}
+export default PropertyGallery;
