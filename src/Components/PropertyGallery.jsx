@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropertyCard from './PropertyCard';
 
 
-const PropertGallery = () => {
+const PropertyGallery = () => {
 
     //Memory to hold the properties fetched from properties.json
     const [properties, setProperties] = useState([]);
@@ -28,7 +28,7 @@ const PropertGallery = () => {
     } , []); //Empty dependency array to run only once on component mount
 
     return (
-        
+
         //Main container for the property gallery
         <div className="property-gallery">
             <h1>Featured Properties</h1>
