@@ -1,5 +1,5 @@
 import React from 'react';
-import './PropertyCard.css';
+import './Styles/PropertyCard.css';
 
 /** @param {Object} property - An Object containing the property data to display */
 

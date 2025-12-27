@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropertyCard from './PropertyCard';
-import './PropertyGallery.css';
+import './Styles/PropertyGallery.css';
 
 
 const PropertyGallery = () => {
@@ -8,6 +8,7 @@ const PropertyGallery = () => {
     //Memory to hold the properties fetched from properties.json
     const [properties, setProperties] = useState([]);
 
+    //State to hold filter criteria for the required 5 fields
     const [filter, setFilter] = useState({
         type: 'any',
         minPrice: 250000,
