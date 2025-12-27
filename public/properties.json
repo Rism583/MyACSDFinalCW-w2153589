@@ -83,7 +83,7 @@
         },
         {
             "id":"prop4",
-            "type":"Apartment",
+            "type":"Flat",
             "bedrooms":2,
             "price":299995,
             "tenure":"Leasehold",
