@@ -14,8 +14,11 @@ const PropertySearch = ({filter, setFilter}) => {
     };
 
     return (
+        //Search section container
         <section className="search-section">
             <h2>Search Properties</h2>
+
+            {/*Dropdown for property type filter*/}
             <div className="filter-container">
                 <label htmlFor="type">Property Type:</label>
                 <select id="type" name="type" value={filter.type} onChange={handlefilterChange}>

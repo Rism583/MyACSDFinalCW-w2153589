@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropertyCard from './PropertyCard';
 import './Styles/PropertyGallery.css';
+import PropertySearch from './PropertySearch';
 
 
 const PropertyGallery = () => {
@@ -20,6 +21,11 @@ const PropertyGallery = () => {
         postcode: 'any'
     })
 
+    //Filtering properties based on selected criteria
+    const filteredProperties = properties.filter((property) => {
+        const matchesType = filter.type === 'any' || property.type === filter.type;
+        return matchesType;
+    });
     useEffect(() => {
         //Fetch properties data from the JSON file
         fetch('/properties.json')
@@ -46,10 +52,12 @@ const PropertyGallery = () => {
         <div className="property-gallery">
             <h1>Featured Properties</h1>
 
+            <PropertySearch filter={filter} setFilter={setFilter} />
+
             <div className="property-grid">
 
                 {/* Mapping through the properties array to create PropertyCard components */}  
-                {properties.map((item) => (
+                {filteredProperties.map((item) => (
                     <PropertyCard
                         key={item.id} //unique key for each property 
                         property={item} //passing one entire property data into the PropertyCard
