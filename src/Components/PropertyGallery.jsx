@@ -18,13 +18,15 @@ const PropertyGallery = () => {
         maxBedrooms: 12,
         startDate: '2022-01-31',
         endDate: '2024-12-31',
-        postcode: 'any'
+        postcode: ''
     })
 
     //Filtering properties based on selected criteria
     const filteredProperties = properties.filter((property) => {
         const matchesType = filter.type === 'any' || property.type === filter.type;
-        return matchesType;
+        const matchesPostcode = filter.postcode === '' || property.postcode.toUpperCase().startsWith(filter.postcode.toUpperCase());
+        
+        return matchesType && matchesPostcode;
     });
     useEffect(() => {
         //Fetch properties data from the JSON file

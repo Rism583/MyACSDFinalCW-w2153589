@@ -31,6 +31,18 @@ const PropertySearch = ({filter, setFilter}) => {
                     <option value="Townhouse">Townhouse</option>
                 </select>
             </div>
+
+            <div className="filter-container">
+                <label htmlFor='postal'>Postcode:</label>
+                <input 
+                    type="text" 
+                    id="postal" 
+                    name="postcode" 
+                    value={filter.postcode} 
+                    onChange={handlefilterChange} 
+                    placeholder="Enter postcode" 
+                />
+            </div>
         </section>
 
     )
