@@ -8,6 +8,17 @@ const PropertyGallery = () => {
     //Memory to hold the properties fetched from properties.json
     const [properties, setProperties] = useState([]);
 
+    const [filter, setFilter] = useState({
+        type: 'any',
+        minPrice: 250000,
+        maxPrice: 1000000,
+        minBedrooms: 1,
+        maxBedrooms: 12,
+        startDate: '2022-01-31',
+        endDate: '2024-12-31',
+        postcode: 'any'
+    })
+
     useEffect(() => {
         //Fetch properties data from the JSON file
         fetch('/properties.json')
