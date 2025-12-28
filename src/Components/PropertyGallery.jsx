@@ -14,8 +14,8 @@ const PropertyGallery = () => {
         type: 'any',
         minPrice: 250000,
         maxPrice: 1000000,
-        minBedrooms: 1,
-        maxBedrooms: 12,
+        minBedrooms: "No minimum",
+        maxBedrooms: "No maximum",
         startDate: '2022-01-31',
         endDate: '2024-12-31',
         postcode: ''
@@ -23,11 +23,30 @@ const PropertyGallery = () => {
 
     //Filtering properties based on selected criteria
     const filteredProperties = properties.filter((property) => {
+
+        //checking for type filter
         const matchesType = filter.type === 'any' || property.type === filter.type;
+
+        //checking for postcode filter
         const matchesPostcode = filter.postcode === '' || property.postcode.toUpperCase().startsWith(filter.postcode.toUpperCase());
-        
-        return matchesType && matchesPostcode;
+
+        //converting bedroom values for comparison
+        const getBedroomValue = (bedrooms) => {
+            if (bedrooms === "No minimum") return 0;
+            if (bedrooms === "No maximum") return 100;
+            if (bedrooms === "Studio") return 0;
+            return parseInt(bedrooms, 10);
+        }
+
+        //checking for bedroom filter
+        const minSelectedBedrooms = getBedroomValue(filter.minBedrooms);
+        const maxSelectedBedrooms = getBedroomValue(filter.maxBedrooms);
+        const propertyBedrooms = property.bedrooms === "Studio" ? 0 : parseInt(property.bedrooms, 10);
+
+        const matchesBedrooms = propertyBedrooms >= minSelectedBedrooms && propertyBedrooms <= maxSelectedBedrooms;
+        return matchesType && matchesPostcode && matchesBedrooms;
     });
+
     useEffect(() => {
         //Fetch properties data from the JSON file
         fetch('/properties.json')
