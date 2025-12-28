@@ -12,8 +12,8 @@ const PropertyGallery = () => {
     //State to hold filter criteria for the required 5 fields
     const [filter, setFilter] = useState({
         type: 'any',
-        minPrice: 250000,
-        maxPrice: 1000000,
+        minPrice: "No Minimum",
+        maxPrice: "No Maximum",
         minBedrooms: "No minimum",
         maxBedrooms: "No maximum",
         startDate: '2022-01-31',
@@ -44,7 +44,21 @@ const PropertyGallery = () => {
         const propertyBedrooms = property.bedrooms === "Studio" ? 0 : parseInt(property.bedrooms, 10);
 
         const matchesBedrooms = propertyBedrooms >= minSelectedBedrooms && propertyBedrooms <= maxSelectedBedrooms;
-        return matchesType && matchesPostcode && matchesBedrooms;
+
+        //converting price values for comparison
+        const getPriceValue = (price) => {
+            if (price === "No Minimum") return 0;
+            if (price === "No Maximum") return Infinity;
+            return parseInt(price, 10);
+        }
+
+        //checking for price filter
+        const minSelectedPrice = getPriceValue(filter.minPrice);
+        const maxSelectedPrice = getPriceValue(filter.maxPrice);
+        const propertyPrice = property.price;
+        const matchesPrice = propertyPrice >= minSelectedPrice && propertyPrice <= maxSelectedPrice;
+
+        return matchesType && matchesPostcode && matchesBedrooms && matchesPrice;
     });
 
     useEffect(() => {
