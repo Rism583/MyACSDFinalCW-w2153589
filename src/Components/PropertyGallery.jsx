@@ -16,8 +16,8 @@ const PropertyGallery = () => {
         maxPrice: "No Maximum",
         minBedrooms: "No minimum",
         maxBedrooms: "No maximum",
-        startDate: '2022-01-31',
-        endDate: '2024-12-31',
+        startDate: '2000-01-31',
+        endDate: '2026-12-31',
         postcode: ''
     })
 
@@ -58,7 +58,34 @@ const PropertyGallery = () => {
         const propertyPrice = property.price;
         const matchesPrice = propertyPrice >= minSelectedPrice && propertyPrice <= maxSelectedPrice;
 
-        return matchesType && matchesPostcode && matchesBedrooms && matchesPrice;
+        const monthMapping = {
+            "January": 1,
+            "February": 2,
+            "March": 3, 
+            "April": 4,
+            "May": 5,
+            "June": 6,  
+            "July": 7,
+            "August": 8,
+            "September": 9, 
+            "October": 10,
+            "November": 11,
+            "December": 12
+        }
+
+        //converting date values for comparison
+        const getDateValue = new Date(
+            property.added.year, 
+            monthMapping[property.added.month] - 1, // Months are zero-indexed in JavaScript Date
+            property.added.day
+        );
+
+        const start = new Date(filter.startDate);
+        const end = new Date(filter.endDate);
+
+        //checking for date filter
+        const matchesDate = getDateValue >= start && getDateValue <= end;
+        return matchesType && matchesPostcode && matchesBedrooms && matchesPrice && matchesDate;
     });
 
     useEffect(() => {

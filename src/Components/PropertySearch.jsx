@@ -136,6 +136,27 @@ const PropertySearch = ({filter, setFilter}) => {
 
             </div>
 
+            <div className="filter-container">
+                <label htmlFor="start-date">Added After: </label>
+                <input 
+                    type="date" 
+                    id="start-date" 
+                    name="startDate" 
+                    value={filter.startDate} 
+                    onChange={handlefilterChange} 
+                />
+            </div>
+            <div className="filter=container">
+                <label htmlFor="end-date">Added Before: </label>
+                <input 
+                    type="date" 
+                    id="end-date" 
+                    name="endDate" 
+                    value={filter.endDate} 
+                    onChange={handlefilterChange} 
+                />
+            </div>
+
 
         </section>
 
