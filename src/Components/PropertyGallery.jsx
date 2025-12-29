@@ -91,12 +91,30 @@ const PropertyGallery = () => {
     //State to hold favourite properties
     const [favourites, setFavourites] = useState([]);
 
+    //Function to add a property to favourites list
     const addToFavourites = (property) => {
-        if (!favourites.find((favourite) => favourite,id === property.id)) {
+        if (!favourites.find((favourite) => favourite.id === property.id)) {
             setFavourites([...favourites, property]);
-        }alert("This property is already in the list");
+        }else{
+            alert("This property is already in the list")};
     };
 
+    //Function to remove a property from favourites list
+    const removeFromFavourites = (id) => {
+
+        const updatedFavourites = favourites.filter((favourite) => favourite.id !== id);
+        setFavourites (updatedFavourites);
+    };
+
+    //Function to clear all favourites
+    const clearFavourites = () => {
+        setFavourites ([]);
+    };
+
+    //State to toggle between viewing all properties and favourites
+    const [showFavourites, setShowFavourites] = useState(false);
+
+    //const useEffect hook to fetch properties data on component mount
     useEffect(() => {
         //Fetch properties data from the JSON file
         fetch('/properties.json')
@@ -125,19 +143,65 @@ const PropertyGallery = () => {
 
             <PropertySearch filter={filter} setFilter={setFilter} />
 
-            <div className="property-grid">
+            {/* Toggle Favourites Button */}
+            <button className="view-fav-btn" onClick={() => setShowFavourites(!showFavourites)}>
+                {showFavourites ? 'Hide Favourites' : 'View Favourites'} ({favourites.length})
+            </button>
+
+            {/* Favourites Section */}
+            {showFavourites ? (
+                <div className="favorites-container">
+                    <h2>My Favourites ({favourites.length})</h2>
+                    {favourites.length === 0
+                        ? <p className="no-favs-msg">No Favourite prperties added yet</p>
+                        : <div className="favs-list">
+
+                            {/* Mapping through the favourites array to display each favourite property */}
+                            {favourites.map((favourite) => (
+                                <div className="favourite-card" key={favourite.id}>
+
+                                    {/* Favourite Property Image and Details Section */}
+                                    <img src ={favourite.picture} alt={favourite.type} className="fav-prop-img "/>
+
+                                    <div className="fav-prop-details">
+                                        <h3>{favourite.type} with {favourite.bedrooms} bedrooms</h3>
+                                        <h4>£{favourite.price.toLocaleString()}</h4>
+                                    </div>
+
+                                    {/* Remove from favourites button */}
+                                    <button 
+                                        className="remove-fav-button"
+                                        onClick={() => removeFromFavourites(favourite.id)}>                                
+                                        Remove from Favourites
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    }
+                    {/* Clear all favourites button */}
+                    {favourites.length > 0 && (
+                        <button className="clear-favs-button" onClick={clearFavourites}>
+                            Clear All Favourites
+                        </button>
+                    )}
+                </div>
+            //show only the filtered properties section
+            ): (<div className="property-grid">
 
                 {/* Mapping through the properties array to create PropertyCard components */}  
                 {filteredProperties.map((item) => (
                     <PropertyCard
                         key={item.id} //unique key for each property 
                         property={item} //passing one entire property data into the PropertyCard
+                        add={addToFavourites} //passing the addToFavourites function as a prop
+                        isFavourite={favourites.some((fav) => fav.id === item.id)} //checking if the property is in favourites
                     />
                 ))}
             </div>
+            )}
             {/* Loading message if properties are not yet loaded */}
             {properties.length === 0 && (<p>Loading properties...</p>)}
         </div>
-    )
-}
+    )   
+};
 export default PropertyGallery;

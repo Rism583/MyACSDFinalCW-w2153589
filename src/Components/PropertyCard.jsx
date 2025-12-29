@@ -1,9 +1,8 @@
 import React from 'react';
 import './Styles/PropertyCard.css';
-
 /** @param {Object} property - An Object containing the property data to display */
 
-const PropertyCard = ({property}) => {
+const PropertyCard = ({property, add, isFavourite}) => {
     return (
         //main container for the property card
         <div className="property-card">
@@ -21,8 +20,19 @@ const PropertyCard = ({property}) => {
                 : property.description} </p>
                 <p className = "property-location">{property.location}</p>
                 <p className = "property-price">£{property.price.toLocaleString()}</p>
-
-                <button className="explore-button">Explore Home</button>
+                
+                {/* Buttons Section */}
+                <div className="Buttons">
+                    <button className="explore-button">Explore Home</button>
+                    {isFavourite //checking if the property is already in favourites
+                    ? ( <span className="favourite-added-msg">Added to ❤️</span>)
+                    : <button 
+                        className="favourite-button" 
+                        onClick={() => add(property)}>
+                            Add to Favourites</button>
+                    }          
+                </div>
+                
             </div>
         </div>
     )
