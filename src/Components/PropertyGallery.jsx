@@ -88,6 +88,15 @@ const PropertyGallery = () => {
         return matchesType && matchesPostcode && matchesBedrooms && matchesPrice && matchesDate;
     });
 
+    //State to hold favourite properties
+    const [favourites, setFavourites] = useState([]);
+
+    const addToFavourites = (property) => {
+        if (!favourites.find((favourite) => favourite,id === property.id)) {
+            setFavourites([...favourites, property]);
+        }alert("This property is already in the list");
+    };
+
     useEffect(() => {
         //Fetch properties data from the JSON file
         fetch('/properties.json')
