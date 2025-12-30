@@ -25,7 +25,7 @@ const PropertyCard = ({property, add, isFavourite}) => {
                 
                 {/* Buttons Section */}
                 <div className="Buttons">
-                    <button className="explore-button">Explore Home</button>
+                    <Link to={`/property/${property.id}`} className="view-details-btn"> Explore Home </Link>
                     {isFavourite //checking if the property is already in favourites
                     ? ( <span className="favourite-added-msg">Added to ❤️</span>)
                     : <button 
