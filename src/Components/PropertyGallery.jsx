@@ -4,11 +4,7 @@ import './Styles/PropertyGallery.css';
 import PropertySearch from './PropertySearch';
 
 
-const PropertyGallery = ({ favourites, addToFavourites, removeFromFavourites, clearFavourites }) => {
-
-    //Memory to hold the properties fetched from properties.json
-    const [properties, setProperties] = useState([]);
-
+const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFavourites, clearFavourites }) => {
     //State to hold filter criteria for the required 5 fields
     const [filter, setFilter] = useState({
         type: 'any',
@@ -94,27 +90,6 @@ const PropertyGallery = ({ favourites, addToFavourites, removeFromFavourites, cl
 
     //State to toggle between viewing all properties and favourites
     const [showFavourites, setShowFavourites] = useState(false);
-
-    //const useEffect hook to fetch properties data on component mount
-    useEffect(() => {
-        //Fetch properties data from the JSON file
-        fetch('/properties.json')
-            .then(response => {
-
-                //checking if the fetching is successful
-                if (!response.ok) {
-                    throw new Error('Failed to load properties data');
-                }
-                return response.json();
-            })
-
-            .then( (data) => {
-                setProperties(data.properties);
-            })
-            .catch ((error) => {
-                console.error("Error in fetching data: ",error);
-            });
-    } , []); //Empty dependency array to run only once on component mount
 
     return (
 

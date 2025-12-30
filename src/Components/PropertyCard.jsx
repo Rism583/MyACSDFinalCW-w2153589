@@ -1,5 +1,7 @@
 import React from 'react';
 import './Styles/PropertyCard.css';
+import { Link } from 'react-router-dom';
+
 /** @param {Object} property - An Object containing the property data to display */
 
 const PropertyCard = ({property, add, isFavourite}) => {
