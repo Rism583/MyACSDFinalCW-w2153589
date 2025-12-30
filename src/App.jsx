@@ -1,12 +1,17 @@
 import PropertyGallery from './Components/PropertyGallery.jsx';
 import './App.css'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 
+//Function to get initial favourites from local storage
+const getInitialFavourites = () => {
+  const savedFavourites = localStorage.getItem('favourite_props');
+  return savedFavourites ? JSON.parse(savedFavourites) : [];//return empty array if nothing in local storage
+}
 function App() {
+
   //State to hold favourite properties
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState(getInitialFavourites());
 
   //Function to add a property to favourites list
   const addToFavourites = (property) => {
@@ -27,6 +32,11 @@ function App() {
   const clearFavourites = () => {
       setFavourites ([]);
   };
+
+  //saving favourites to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('favourite_props', JSON.stringify(favourites));
+  }, [favourites]);
 
   return (
     <Router>
