@@ -4,7 +4,7 @@ import './Styles/PropertyGallery.css';
 import PropertySearch from './PropertySearch';
 
 
-const PropertyGallery = () => {
+const PropertyGallery = ({ favourites, addToFavourites, removeFromFavourites, clearFavourites }) => {
 
     //Memory to hold the properties fetched from properties.json
     const [properties, setProperties] = useState([]);
@@ -25,10 +25,10 @@ const PropertyGallery = () => {
     const filteredProperties = properties.filter((property) => {
 
         //checking for type filter
-        const matchesType = filter.type === 'any' || property.type === filter.type;
+        const matchingType = filter.type === 'any' || property.type === filter.type;
 
         //checking for postcode filter
-        const matchesPostcode = filter.postcode === '' || property.postcode.toUpperCase().startsWith(filter.postcode.toUpperCase());
+        const matchingPostcode = filter.postcode === '' || property.postcode.toUpperCase().startsWith(filter.postcode.toUpperCase());
 
         //converting bedroom values for comparison
         const getBedroomValue = (bedrooms) => {
@@ -43,7 +43,7 @@ const PropertyGallery = () => {
         const maxSelectedBedrooms = getBedroomValue(filter.maxBedrooms);
         const propertyBedrooms = property.bedrooms === "Studio" ? 0 : parseInt(property.bedrooms, 10);
 
-        const matchesBedrooms = propertyBedrooms >= minSelectedBedrooms && propertyBedrooms <= maxSelectedBedrooms;
+        const matchingBedrooms = propertyBedrooms >= minSelectedBedrooms && propertyBedrooms <= maxSelectedBedrooms;
 
         //converting price values for comparison
         const getPriceValue = (price) => {
@@ -56,7 +56,7 @@ const PropertyGallery = () => {
         const minSelectedPrice = getPriceValue(filter.minPrice);
         const maxSelectedPrice = getPriceValue(filter.maxPrice);
         const propertyPrice = property.price;
-        const matchesPrice = propertyPrice >= minSelectedPrice && propertyPrice <= maxSelectedPrice;
+        const matchingPrice = propertyPrice >= minSelectedPrice && propertyPrice <= maxSelectedPrice;
 
         const monthMapping = {
             "January": 1,
@@ -84,32 +84,13 @@ const PropertyGallery = () => {
         const end = new Date(filter.endDate);
 
         //checking for date filter
-        const matchesDate = getDateValue >= start && getDateValue <= end;
-        return matchesType && matchesPostcode && matchesBedrooms && matchesPrice && matchesDate;
+        const matchingDate = getDateValue >= start && getDateValue <= end;
+
+        //returning true if all filter criteria match
+        return matchingType && matchingPostcode && matchingBedrooms && matchingPrice && matchingDate;
     });
 
-    //State to hold favourite properties
-    const [favourites, setFavourites] = useState([]);
-
-    //Function to add a property to favourites list
-    const addToFavourites = (property) => {
-        if (!favourites.find((favourite) => favourite.id === property.id)) {
-            setFavourites([...favourites, property]);
-        }else{
-            alert("This property is already in the list")};
-    };
-
-    //Function to remove a property from favourites list
-    const removeFromFavourites = (id) => {
-
-        const updatedFavourites = favourites.filter((favourite) => favourite.id !== id);
-        setFavourites (updatedFavourites);
-    };
-
-    //Function to clear all favourites
-    const clearFavourites = () => {
-        setFavourites ([]);
-    };
+    
 
     //State to toggle between viewing all properties and favourites
     const [showFavourites, setShowFavourites] = useState(false);
