@@ -31,7 +31,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
             if (bedrooms === "No minimum") return 0;
             if (bedrooms === "No maximum") return 100;
             if (bedrooms === "Studio") return 0;
-            return parseInt(bedrooms, 10);
+            return parseInt(bedrooms, 10) || 0;
         }
 
         //checking for bedroom filter
@@ -45,7 +45,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
         const getPriceValue = (price) => {
             if (price === "No Minimum") return 0;
             if (price === "No Maximum") return Infinity;
-            return parseInt(price, 10);
+            return parseInt(price, 10) ||0; //handle NaN cases explicitly
         }
 
         //checking for price filter
