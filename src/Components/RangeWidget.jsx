@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const RangeWidget = ({ label, minName, maxName , minValue, maxValue, options, onChange }) => { //RangeWidget component to handle range inputs
     return (
         <div className="range-widget-container">
