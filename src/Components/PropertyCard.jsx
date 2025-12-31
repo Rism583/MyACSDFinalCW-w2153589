@@ -4,11 +4,16 @@ import { Link } from 'react-router-dom';
 
 /** @param {Object} property - An Object containing the property data to display */
 
-const PropertyCard = ({property, add, isFavourite}) => {
-    const 
+const PropertyCard = ({property, addToFavourites, isFavourite}) => {
+
+    //Handler for drag start event
+    const handleDragStart = (e) => {
+        //Setting the property ID in the data transfer object
+        e.dataTransfer.setData('propertyId', property.id);
+    }
     return (
         //main container for the property card
-        <div className="property-card">
+        <div className="property-card" draggable="true" onDragStart={handleDragStart}>{/*enabling drag functionality*/}
 
             {/* Main Image section */}
             <div className="property-img-container">
@@ -31,7 +36,7 @@ const PropertyCard = ({property, add, isFavourite}) => {
                     ? ( <span className="favourite-added-msg">Added to ❤️</span>)
                     : <button 
                         className="favourite-button" 
-                        onClick={() => add(property)}>
+                        onClick={() => addToFavourites(property)}>
                             Add to Favourites</button>
                     }          
                 </div>

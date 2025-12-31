@@ -91,6 +91,24 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
     //State to toggle between viewing all properties and favourites
     const [showFavourites, setShowFavourites] = useState(false);
 
+    //Handler for drag over event
+    const handleDragOver = (e) => {
+        e.preventDefault(); // Prevent default to allow drop
+    }
+
+    //Handler for drop event
+    const handleDrop = (e) => {
+        e.preventDefault();
+
+        //Getting the dragged property ID from the data transfer object
+        const draggedPropertyId = e.dataTransfer.getData('propertyId');
+
+        //Finding the dragged property from the properties list
+        const foundProperty = properties.find((prop) => prop.id === draggedPropertyId);
+        if (foundProperty) {
+            addToFavourites(foundProperty);
+        }
+    }
     return (
 
         //Main container for the property gallery
@@ -100,13 +118,18 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
             <PropertySearch filter={filter} setFilter={setFilter} />
 
             {/* Toggle Favourites Button */}
-            <button className="view-fav-btn" onClick={() => setShowFavourites(!showFavourites)}>
+            <button className="view-fav-btn" 
+            onClick={() => setShowFavourites(!showFavourites)}
+            onDragOver={handleDragOver} // Allow drag over
+            onDrop={handleDrop}> {/* Handle drop event */}
                 {showFavourites ? 'Hide Favourites' : 'View Favourites'} ({favourites.length})
             </button>
 
             {/* Favourites Section */}
             {showFavourites ? (
-                <div className="favorites-container">
+                <div className="favorites-container"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}>
                     <h2>My Favourites ({favourites.length})</h2>
                     {favourites.length === 0
                         ? <p className="no-favs-msg">No Favourite prperties added yet</p>
@@ -149,7 +172,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                     <PropertyCard
                         key={item.id} //unique key for each property 
                         property={item} //passing one entire property data into the PropertyCard
-                        add={addToFavourites} //passing the addToFavourites function as a prop
+                        addToFavourites={addToFavourites} //passing the addToFavourites function as a prop
                         isFavourite={favourites.some((fav) => fav.id === item.id)} //checking if the property is in favourites
                     />
                 ))}
