@@ -1,0 +1,19 @@
+import React from "react";
+
+const DateWidget = ({ label, name, value, onChange }) => {
+    return (
+        <div className="date-widget-container">
+            <label htmlFor={name}>{label}</label>
+            <input
+                type="date"
+                id={name}
+                name={name}
+                value={value}
+                onChange={onChange}
+            />
+        </div>
+
+    );
+};
+
+export default DateWidget;
