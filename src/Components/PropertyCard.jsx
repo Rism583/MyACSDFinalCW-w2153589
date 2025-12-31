@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 /** @param {Object} property - An Object containing the property data to display */
 
 const PropertyCard = ({property, add, isFavourite}) => {
+    const 
     return (
         //main container for the property card
         <div className="property-card">
