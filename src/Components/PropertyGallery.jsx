@@ -8,10 +8,10 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
     //State to hold filter criteria for the required 5 fields
     const [filter, setFilter] = useState({
         type: 'any',
-        minPrice: "No Minimum",
-        maxPrice: "No Maximum",
-        minBedrooms: "No minimum",
-        maxBedrooms: "No maximum",
+        minPrice: "No Min",
+        maxPrice: "No Max",
+        minBedrooms: "No min",
+        maxBedrooms: "No max",
         startDate: '2000-01-31',
         endDate: '2026-12-31',
         postcode: ''
