@@ -165,18 +165,38 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                     )}
                 </div>
             //show only the filtered properties section
-            ): (<div className="property-grid">
-
-                {/* Mapping through the properties array to create PropertyCard components */}  
-                {filteredProperties.map((item) => (
-                    <PropertyCard
-                        key={item.id} //unique key for each property 
-                        property={item} //passing one entire property data into the PropertyCard
-                        addToFavourites={addToFavourites} //passing the addToFavourites function as a prop
-                        isFavourite={favourites.some((fav) => fav.id === item.id)} //checking if the property is in favourites
-                    />
-                ))}
-            </div>
+            ): (<div className='property-grid-container'>
+                    {filteredProperties.length > 0 ? (
+                        <div className="property-grid">
+                            {/* Mapping through the properties array to create PropertyCard components */}  
+                            {filteredProperties.map((item) => (
+                                <PropertyCard
+                                    key={item.id} //unique key for each property 
+                                    property={item} //passing one entire property data into the PropertyCard
+                                    addToFavourites={addToFavourites} //passing the addToFavourites function as a prop
+                                    isFavourite={favourites.some((fav) => fav.id === item.id)} //checking if the property is in favourites
+                                />
+                        ))}
+                        </div>
+                    ) : (
+                        <div className="no-results-msg">
+                            <h4>No properties match your current filters.</h4>
+                            <p>Please adjust your filter criteria and try again.</p>
+                            <button className='reset-filters-btn' onClick={() => {
+                                setFilter({
+                                    type: 'any',
+                                    minPrice: "No Minimum",
+                                    maxPrice: "No Maximum",
+                                    minBedrooms: "No minimum",
+                                    maxBedrooms: "No maximum",
+                                    startDate: '2000-01-31',
+                                    endDate: '2026-12-31',
+                                    postcode: ''
+                                });
+                            }}>Reset Filters</button>
+                        </div>
+                    )}
+                </div>
             )}
             {/* Loading message if properties are not yet loaded */}
             {properties.length === 0 && (<p>Loading properties...</p>)}
