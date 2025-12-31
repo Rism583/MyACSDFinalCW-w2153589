@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from "react";
 import { useParams ,Link } from "react-router-dom";
 import './Styles/PropertyPage.css';
 
@@ -9,6 +10,11 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
     
     //Finding the property with the matching ID
     const property = properties.find((prop) => prop.id === id);
+
+    //State for the main viewer
+    const[mainImage,setMainImage] = useState(property? property.picture : "")
+
+
     if (!property) {
         return <div className="error-msg">Property not found</div>;
     }
@@ -24,15 +30,26 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                 <h1>{property.type} with {property.bedrooms} bedrooms</h1>
             </div>
 
-            {/* Property Images Grid */}
-            <div className="prop-imgs-grid">
-                {[property.picture, ...property.images].map((imgSrc, index) => (
+            <div className="main-image-view">
+                {mainImage && (
                     <img 
-                    key={index} 
-                    src={imgSrc.startsWith('/') 
-                        ? imgSrc : `/${imgSrc} `}
-                    alt={`${property.type} image ${index + 1}`} 
-                    className="prop-img"/>
+                        src = {mainImage.startsWith('/') ? mainImage : `/${mainImage}`}
+                        alt="Selected property"
+                        className="main-view"
+                    />
+                )}
+            </div> 
+
+            <div className="thumbnail-row">
+                {[property.picture, ...property.images]
+                .map((imgSrc, index) => ( // Rendering thumbnails
+                    <img 
+                        key={index} 
+                        src={imgSrc.startsWith('/') ? imgSrc : `/${imgSrc}`}
+                        alt={`Thumbnail ${index + 1}`} 
+                        className={`thumb-img ${mainImage === imgSrc ? 'active-thumb' : ''}`}
+                        onClick={() => setMainImage(imgSrc)} // Interaction Logic
+                    />
                 ))}
             </div>
 
