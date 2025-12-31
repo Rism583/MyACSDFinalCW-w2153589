@@ -1,6 +1,6 @@
 import './Styles/PropertySearch.css';
 import React from 'react';
-
+import DateWidget from './DateWidget';//importing DateWidget component for date inputs
 const PropertySearch = ({filter, setFilter}) => {
 
     //Handler for filter input changes
@@ -137,23 +137,23 @@ const PropertySearch = ({filter, setFilter}) => {
             </div>
 
             <div className="filter-container">
-                <label htmlFor="start-date">Added After: </label>
-                <input 
-                    type="date" 
-                    id="start-date" 
-                    name="startDate" 
-                    value={filter.startDate} 
-                    onChange={handlefilterChange} 
+
+                {/* DateWidget for start date filter */}
+                <DateWidget
+                    label="Added After:"
+                    name="startDate"
+                    value={filter.startDate}
+                    onChange={handlefilterChange}
                 />
             </div>
             <div className="filter=container">
-                <label htmlFor="end-date">Added Before: </label>
-                <input 
-                    type="date" 
-                    id="end-date" 
-                    name="endDate" 
-                    value={filter.endDate} 
-                    onChange={handlefilterChange} 
+                
+                {/* DateWidget for end date filter */}
+                <DateWidget
+                    label="Added Before:"
+                    name="endDate"
+                    value={filter.endDate}
+                    onChange={handlefilterChange}
                 />
             </div>
 
