@@ -66,6 +66,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          //Route for the main property gallery
           <Route 
             path="/" 
             element={
@@ -78,9 +79,15 @@ function App() {
               />
             } 
           />
+          
+          //Route for individual property pages
           <Route
             path="/property/:id" 
-            element={<PropertyPage properties={properties} />}
+            element={<PropertyPage 
+              properties={properties}
+              favourites={favourites}
+              addToFavourites={addToFavourites}
+            />}
           />
         </Routes>
       </div>

@@ -2,20 +2,29 @@ import React from "react";
 import { useParams ,Link } from "react-router-dom";
 import './Styles/PropertyPage.css';
 
+//Component to display detailed information about a specific property
 const PropertyPage = ({properties ,favourites, addToFavourites}) => {
+    //Extracting property ID from URL parameters
     const {id} = useParams();
     
+    //Finding the property with the matching ID
     const property = properties.find((prop) => prop.id === id);
     if (!property) {
         return <div className="error-msg">Property not found</div>;
     }
     return (
+    
         <div className="property-page-container">
+
+            {/* Link to go back to the main gallery */}
             <Link to="/" className="back-link">← Back to Gallery</Link>
 
+            {/* Property Header Section */}
             <div className="prop-header">
                 <h1>{property.type} with {property.bedrooms} bedrooms</h1>
             </div>
+
+            {/* Property Images Grid */}
             <div className="prop-imgs-grid">
                 {[property.picture, ...property.images].map((imgSrc, index) => (
                     <img 
@@ -26,6 +35,8 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                     className="prop-img"/>
                 ))}
             </div>
+
+            {/* Favourite Button Section */}
             <div className="fav-button-container">
                 {favourites && favourites.find((fav) => fav.id === property.id) ? (
                     <button className="favourite-added-btn" disabled>Added to ❤️</button>
@@ -33,6 +44,8 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                     <button className="add-fav-button" onClick={() => addToFavourites(property)}>Add to ❤️</button>
                 )}
             </div>
+
+            {/* Property Description and Details Section */}
             <div className="prop-description">
                 <h2>Description</h2>
                 <p>{property.description}</p>
@@ -47,12 +60,14 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                     <li><strong>Added:</strong> {property.added.month} {property.added.year}</li>
                 </ul>
             </div>
-
+            
+            {/* Floor Plan Section */}
             <div className="prop-floor-plan">
                 <h2>Floor Plan</h2>
                 <img src={property.floorplan.startsWith('/') ? property.floorplan : `/${property.floorplan}`} alt="Floor Plan" className="floor-plan-img"/>
             </div>
-
+            
+            {/* Location Map Section */}
             <div className="prop-map">
                 <h2>Location Map</h2>
                 <iframe
