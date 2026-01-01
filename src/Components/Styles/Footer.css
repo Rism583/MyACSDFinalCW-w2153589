@@ -1,0 +1,90 @@
+.app-footer {
+    background-color: var(--primary-purple); /* #3d0148 */
+    color: white;
+    padding: 60px 5% 20px; /* Generous top padding for a "premium" feel */
+    margin-top: auto; /* Ensures footer stays at bottom */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Essential for mobile responsiveness */
+}
+
+.footer-section, .footer-links, .footer-contact {
+    flex: 1;
+    min-width: 250px; /* Triggers the stack on smaller screens */
+}
+
+/* Typography */
+.footer-content h4 {
+    font-family: var(--font-title); /* Montserrat */
+    font-size: 1.3rem;
+    color: var(--accent-pink); /* #FFC4DA for clear contrast */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-content p, .footer-content li {
+    font-family: var(--font-body); /* Inter */
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8); /* Slightly dimmed for better visual hierarchy */
+}
+
+/* Links Styling */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    padding: 5px 0;
+}
+
+.footer-links a:hover {
+    color: var(--action-magenta); /* #ca2c92 */
+    transform: translateX(5px); /* Interactive slide effect */
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 196, 218, 0.2); /* Subtle line using accent pink */
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--accent-pink);
+}
+
+/* MOBILE RESPONSIVE LOGIC */
+@media (max-width: 768px) {
+    .app-footer {
+        padding: 40px 20px 20px;
+        text-align: center; /* Center text for easier reading on phones */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center;
+        gap: 30px;
+    }
+
+    .footer-links ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a:hover {
+        transform: scale(1.1); /* Changes slide to zoom for mobile */
+    }
+}
