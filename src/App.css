@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500&display=swap');
 /* 1. Variables & Reset */
 :root {
   --primary-purple: #3d0148;
@@ -5,11 +6,29 @@
   --accent-pink: #FFC4DA;
   --neutral-charcoal: #353E43;
   --bg-off-white: #E0E2DC;
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif; /* Clean & Readable */
+
+
   
   --transition-smooth: all 0.3s ease-in-out;
   --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 8px 25px rgba(61, 1, 72, 0.15);
   --border-radius: 12px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw; /* Prevents horizontal scroll */
+  overflow-x: hidden; 
+}
+
+#root, .App {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 * {
@@ -18,8 +37,13 @@
   box-sizing: border-box;
 }
 
+
+.App {
+    width: 100%;
+}
+
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif; /* Modern, clean font */
+  font-family: var(--font-body);
   background-color: var(--bg-off-white);
   color: var(--neutral-charcoal);
   line-height: 1.6;

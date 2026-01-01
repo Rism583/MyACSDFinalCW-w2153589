@@ -1,0 +1,137 @@
+.app-header {
+    background-color: var(--primary-purple); /* #3d0148 */
+    padding: 0.5rem 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Keeps it visible as user scrolls */
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-standard);
+    color: white;
+}
+
+/* Logo and Branding Section */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.app-logo {
+    height: 150px; /* Adjust based on your logo shape */
+    width: auto;
+    transition: var(--transition-smooth);
+
+    padding: 8px;
+    border-radius: 5px;
+}
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+.app-logo:hover {
+    transform: rotate(5deg) scale(1.1); /* Fun, active interaction */
+}
+
+.app-title {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    margin: 0;
+    color: white;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.app-tagline {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--accent-pink); /* #FFC4DA - subtle contrast */
+    font-style: italic;
+    margin-top: 6px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation Section */
+.navigation-bar {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 5px 0;
+    transition: var(--transition-smooth);
+}
+
+/* Visual Feedback: Hover & Active States */
+.nav-link:hover {
+    color: var(--action-magenta); /* #ca2c92 */
+}
+
+/* The "Active" line effect */
+.nav-link.active-link {
+    color: var(--action-magenta);
+    font-weight: 700;
+}
+
+.nav-link.active-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--action-magenta);
+    border-radius: 2px;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .app-header {
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .navigation-bar {
+        margin-top: 20px;
+        width: 100%;
+        justify-content: space-around; /* Spreads links evenly on phone */
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem; /* Smaller font for mobile */
+    }
+
+    .app-tagline {
+        display: none; /* Hide tagline on mobile for more space */
+    }
+    .app-logo {
+        height: 65px; /* Scale down slightly for smaller screens */
+    }
+    
+    .brand-text {
+        text-align: center; /* Center text on mobile stacks */
+    }
+
+
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import './Styles/Header.css';
 
 
 const Header = () => {
@@ -10,9 +11,11 @@ const Header = () => {
 
             {/* Logo and Title Section */}
             <div className="logo-container">
-                <img src={"/images/Applogo.png"} alt="Simply Home App Logo" className="app-logo" />
-                <h1 className="app-title">Simply Home</h1>
-                <p className="app-tagline">Your destination, Beautifully Discovered...</p>
+                <img src={"/images/logo.png"} alt="Simply Home App Logo" className="app-logo" />
+                <div className="brand-text">
+                    <h1 className="app-title">Simply Home</h1>
+                    <p className="app-tagline">Your destination, Beautifully Discovered...</p>
+                </div>
             </div>
 
             {/* Navigation Links Section */}
