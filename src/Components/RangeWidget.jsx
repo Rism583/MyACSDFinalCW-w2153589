@@ -7,7 +7,7 @@ const RangeWidget = ({ label, minName, maxName , minValue, maxValue, options, on
             <label>{label}</label>
             <div className="range-inputs">
 
-                {/* Dropdown for minimum value */}
+                {/* Dropdown for Min value */}
                 <select name={minName} value={minValue} onChange={onChange}>
                     {options.map(option => (
                         <option key={option} value={option}> {/*setting option value and key for each option*/}
@@ -17,7 +17,7 @@ const RangeWidget = ({ label, minName, maxName , minValue, maxValue, options, on
                 </select>
                 <span> - </span>
 
-                {/* Dropdown for maximum value */}
+                {/* Dropdown for Max value */}
                 <select name={maxName} value={maxValue} onChange={onChange}>
                     {options.map(option => (
                         <option key={option} value={option}>

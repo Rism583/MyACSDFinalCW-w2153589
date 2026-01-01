@@ -3,6 +3,8 @@ import './App.css'
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PropertyPage from './Components/PropertyPage.jsx';
+import Header from './Components/Header.jsx';
+import Footer from './Components/Footer.jsx';
 
 //Function to get initial favourites from local storage
 const getInitialFavourites = () => {
@@ -65,31 +67,39 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Routes>
-          //Route for the main property gallery
-          <Route 
-            path="/" 
-            element={
-              <PropertyGallery
-                properties={properties}
-                favourites={favourites} 
-                addToFavourites={addToFavourites} 
-                removeFromFavourites={removeFromFavourites} 
-                clearFavourites={clearFavourites} 
+
+        {/* Header Section is outside the Router so it appears on all pages */}
+        <Header /> 
+        <main>
+          <Routes>
+              //Route for the main property gallery
+              <Route 
+                path="/" 
+                element={
+                  <PropertyGallery
+                    properties={properties}
+                    favourites={favourites} 
+                    addToFavourites={addToFavourites} 
+                    removeFromFavourites={removeFromFavourites} 
+                    clearFavourites={clearFavourites} 
+                  />
+                } 
               />
-            } 
-          />
-          
-          //Route for individual property pages
-          <Route
-            path="/property/:id" 
-            element={<PropertyPage 
-              properties={properties}
-              favourites={favourites}
-              addToFavourites={addToFavourites}
-            />}
-          />
-        </Routes>
+              
+              //Route for individual property pages
+              <Route
+                path="/property/:id" 
+                element={<PropertyPage 
+                  properties={properties}
+                  favourites={favourites}
+                  addToFavourites={addToFavourites}
+                />}
+              />
+            </Routes>
+        </main>
+
+        {/* Footer Section is outside the Router so it appears on all pages */}
+        <Footer />
       </div>
     </Router>
   )

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from 'public/Applogo.png';
+
 
 const Header = () => {
     return (
@@ -10,7 +10,7 @@ const Header = () => {
 
             {/* Logo and Title Section */}
             <div className="logo-container">
-                <img src={logo} alt="Simply Home App Logo" className="app-logo" />
+                <img src={"/images/Applogo.png"} alt="Simply Home App Logo" className="app-logo" />
                 <h1 className="app-title">Simply Home</h1>
                 <p className="app-tagline">Your destination, Beautifully Discovered...</p>
             </div>

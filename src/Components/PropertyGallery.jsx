@@ -28,29 +28,39 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
 
         //converting bedroom values for comparison
         const getBedroomValue = (bedrooms) => {
-            if (bedrooms === "No minimum") return 0;
-            if (bedrooms === "No maximum") return 100;
+            if (bedrooms === "No min") return 0;
+            if (bedrooms === "No max") return 100;
             if (bedrooms === "Studio") return 0;
-            return parseInt(bedrooms, 10) || 0;
+            
+            const parsed = parseInt(bedrooms, 10);
+            if (isNaN(parsed)) {
+                return type === "minBedrooms" ? 0 : 100; // Default values for invalid input
+            }
+            return parsed;
         }
 
         //checking for bedroom filter
-        const minSelectedBedrooms = getBedroomValue(filter.minBedrooms);
-        const maxSelectedBedrooms = getBedroomValue(filter.maxBedrooms);
+        const minSelectedBedrooms = getBedroomValue(filter.minBedrooms , "minBedrooms");
+        const maxSelectedBedrooms = getBedroomValue(filter.maxBedrooms, "maxBedrooms");
         const propertyBedrooms = property.bedrooms === "Studio" ? 0 : parseInt(property.bedrooms, 10);
 
         const matchingBedrooms = propertyBedrooms >= minSelectedBedrooms && propertyBedrooms <= maxSelectedBedrooms;
 
         //converting price values for comparison
         const getPriceValue = (price) => {
-            if (price === "No Minimum") return 0;
-            if (price === "No Maximum") return Infinity;
-            return parseInt(price, 10) ||0; //handle NaN cases explicitly
+            if (price === "No Min") return 0;
+            if (price === "No Max") return Infinity;
+            
+            const parsed = parseInt(price, 10);
+            if (isNaN(parsed)) {
+                return type === "minPrice" ? 0 : Infinity; // Default values for invalid input
+            }   
+            return parsed;
         }
 
         //checking for price filter
-        const minSelectedPrice = getPriceValue(filter.minPrice);
-        const maxSelectedPrice = getPriceValue(filter.maxPrice);
+        const minSelectedPrice = getPriceValue(filter.minPrice , "minPrice");
+        const maxSelectedPrice = getPriceValue(filter.maxPrice, "maxPrice");
         const propertyPrice = property.price;
         const matchingPrice = propertyPrice >= minSelectedPrice && propertyPrice <= maxSelectedPrice;
 
@@ -185,10 +195,10 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                             <button className='reset-filters-btn' onClick={() => {
                                 setFilter({
                                     type: 'any',
-                                    minPrice: "No Minimum",
-                                    maxPrice: "No Maximum",
-                                    minBedrooms: "No minimum",
-                                    maxBedrooms: "No maximum",
+                                    minPrice: "No Min",
+                                    maxPrice: "No Max",
+                                    minBedrooms: "No min",
+                                    maxBedrooms: "No max",
                                     startDate: '2000-01-31',
                                     endDate: '2026-12-31',
                                     postcode: ''
