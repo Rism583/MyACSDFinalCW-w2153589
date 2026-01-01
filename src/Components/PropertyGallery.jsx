@@ -4,7 +4,7 @@ import './Styles/PropertyGallery.css';
 import PropertySearch from './PropertySearch';
 
 
-const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFavourites, clearFavourites }) => {
+const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFavourites, clearFavourites, viewMode }) => {
     //State to hold filter criteria for the required 5 fields
     const [filter, setFilter] = useState({
         type: 'any',
@@ -123,9 +123,14 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
 
         //Main container for the property gallery
         <div className="property-gallery">
-            <h1>Featured Properties</h1>
+            <h1>{viewMode === "search" ? "  Featured Properties" : "Property Gallery"}</h1>
 
-            <PropertySearch filter={filter} setFilter={setFilter} />
+            {/* Property Search Component - rendered only in search view mode */}
+            {viewMode === "search" && (
+                <PropertySearch filter={filter} setFilter={setFilter} />
+            )}
+
+            
 
             {/* Toggle Favourites Button */}
             <button className="view-fav-btn" 

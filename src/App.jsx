@@ -81,7 +81,22 @@ function App() {
                     favourites={favourites} 
                     addToFavourites={addToFavourites} 
                     removeFromFavourites={removeFromFavourites} 
-                    clearFavourites={clearFavourites} 
+                    clearFavourites={clearFavourites}
+                    viewMode="search"
+                    
+                  />
+                } 
+              />
+              <Route 
+                path="/properties" 
+                element={
+                  <PropertyGallery
+                    properties={properties}
+                    favourites={favourites} 
+                    addToFavourites={addToFavourites} 
+                    removeFromFavourites={removeFromFavourites} 
+                    clearFavourites={clearFavourites}
+                    viewMode="gallery"
                   />
                 } 
               />
