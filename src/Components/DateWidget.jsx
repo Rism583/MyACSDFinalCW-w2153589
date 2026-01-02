@@ -1,4 +1,5 @@
 import React from "react";
+import './Styles/Widgets.css';  
 
 
 const DateWidget = ({ label, name, value, onChange }) => { //DateWidget component to handle date inputs

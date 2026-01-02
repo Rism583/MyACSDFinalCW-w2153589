@@ -1,0 +1,218 @@
+/* 1. Main Container & Layout */
+.property-page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: var(--font-body);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Navigation & Header */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--primary-purple);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.back-link:hover {
+    color: var(--action-magenta);
+    transform: translateX(-5px);
+}
+
+.prop-header h1 {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--primary-purple);
+    margin-bottom: 30px;
+}
+
+/* 3. Cinema Image Viewer */
+.main-image-view {
+    width: 100%;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+.main-view {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.main-view:hover {
+    transform: scale(1.02); /* Subtle immersive zoom */
+}
+
+/* 4. Thumbnail Gallery */
+.thumbnail-row {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.thumb-img {
+    width: 120px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.thumb-img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.active-thumb {
+    opacity: 1;
+    border-color: var(--action-magenta);
+    box-shadow: 0 4px 10px rgba(202, 44, 146, 0.3);
+}
+
+/* 5. Interaction Buttons */
+.fav-button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+}
+
+.add-fav-button, .favourite-added-btn {
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.add-fav-button {
+    background-color: var(--action-magenta);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 20px rgba(202, 44, 146, 0.2);
+}
+
+.add-fav-button:hover {
+    background-color: var(--primary-purple);
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(61, 1, 72, 0.3);
+}
+
+.favourite-added-btn {
+    background-color: #eee;
+    color: #888;
+    border: none;
+    cursor: not-allowed;
+}
+
+/* 6. Tabs System */
+.property-tabs {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+}
+
+.tab-btn, .active-tab {
+    padding: 15px 30px;
+    border: none;
+    background: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.active-tab {
+    color: var(--action-magenta);
+}
+
+.active-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--action-magenta);
+    border-radius: 3px;
+}
+
+/* 7. Tab Panes */
+.tabpane {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.prop-description p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.prop-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.prop-details li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.prop-details li strong {
+    color: var(--primary-purple);
+    width: 120px;
+    display: inline-block;
+}
+
+.floor-plan-img {
+    width: 100%;
+    border-radius: 15px;
+    transition: transform 0.4s ease;
+}
+
+.floor-plan-img:hover {
+    transform: scale(1.05); /* Zoom in on floorplan for detail */
+}
+
+/* 8. Mobile Responsiveness */
+@media (max-width: 768px) {
+    .main-image-view { height: 300px; }
+    
+    .prop-header h1 { font-size: 1.8rem; }
+    
+    .tabpane {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    .property-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

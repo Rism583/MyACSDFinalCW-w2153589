@@ -1,4 +1,5 @@
 import React from 'react';
+import './Styles/Widgets.css';
 
 const TypeWidget = ({ label, value, onChange }) => { //TypeWidget component to handle type selection
 
