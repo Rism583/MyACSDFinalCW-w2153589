@@ -1,6 +1,7 @@
 /* Global Header for the Gallery */
 .property-gallery h1 {
-    font-family: var(--font-title);
+    font-family: var(--font-body);
+    letter-spacing: 0.005rem;
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -135,9 +136,10 @@
 }
 
 .fav-prop-details h3 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--primary-purple);
     margin-bottom: 5px;
+    font-family: var(--font-body);
 }
 
 /* Mobile Responsive Overrides */

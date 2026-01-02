@@ -68,8 +68,8 @@
 }
 
 .property-type {
-    font-family: var(--font-title);
-    font-size: 1.2rem;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
     color: var(--primary-purple);
     margin: 0;
     transition: color 0.3s ease;
@@ -80,7 +80,7 @@
 }
 
 .property-description {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--neutral-charcoal);
     opacity: 0.8;
     line-height: 1.5;
@@ -88,7 +88,7 @@
 }
 
 .property-location {
-    font-size: 0.85rem;
+    font-size: 0.rem;
     font-weight: 600;
     color: var(--action-magenta);
     text-transform: uppercase;
@@ -99,7 +99,7 @@
 }
 
 .property-price {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--primary-purple);
     margin-top: auto;

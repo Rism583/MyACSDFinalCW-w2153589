@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Petemoss&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+
 
 /* 1. Variables & Reset */
 :root {
@@ -7,8 +11,8 @@
   --accent-pink: #FFC4DA;
   --neutral-charcoal: #353E43;
   --bg-off-white: #E0E2DC;
-  --font-title: 'Montserrat', sans-serif;
-  --font-body: 'Inter', sans-serif; 
+  --font-title: "Petemoss", cursive;
+  --font-body: "Philosopher", sans-serif; 
   
   /* ENHANCED: Professional cubic-bezier for high-end feel */
   --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -88,11 +92,14 @@ main {
 h1, h2, h3 {
   color: var(--primary-purple);
   margin-bottom: 1.5rem;
-  font-weight: 700;
   font-family: var(--font-title);
   /* ENHANCED: Text reacts to hover */
   transition: color 0.3s ease, transform 0.3s ease;
-  display: inline-block; /* Allows transform to work */
+  display: inline-block; /* Allows transform to work */  ;
+}
+h2{
+  font-size: 1.5rem;
+  font-family: var(--font-body);
 }
 
 h1:hover, h2:hover {

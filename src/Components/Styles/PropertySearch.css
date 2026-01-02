@@ -50,9 +50,9 @@
 }
 
 .search-section h2 {
-    font-family: var(--font-title);
+    font-family: var(--font-body);
     color: var(--primary-purple);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
     border-bottom: 2px solid var(--bg-off-white);
     padding-bottom: 0.5rem;
@@ -86,7 +86,7 @@
 
 .filter-container label, .widget-container label {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: var(--neutral-charcoal);
     transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -103,7 +103,7 @@
 .search-section input[type="date"] {
     width: 100%;
     padding: 12px 15px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--neutral-charcoal);
     border: 2px solid var(--bg-off-white);
     border-radius: 8px;
