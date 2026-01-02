@@ -69,7 +69,7 @@ function App() {
       <div className="App">
 
         {/* Header Section is outside the Router so it appears on all pages */}
-        <Header /> 
+        <Header favourites={favourites}/> 
         <main>
           <Routes>
               //Route for the main property gallery
@@ -97,6 +97,19 @@ function App() {
                     removeFromFavourites={removeFromFavourites} 
                     clearFavourites={clearFavourites}
                     viewMode="gallery"
+                  />
+                } 
+              />
+              <Route 
+                path="/favourites" 
+                element={
+                  <PropertyGallery
+                    properties={properties}
+                    favourites={favourites} 
+                    addToFavourites={addToFavourites} 
+                    removeFromFavourites={removeFromFavourites} 
+                    clearFavourites={clearFavourites}
+                    viewMode="favourites"
                   />
                 } 
               />

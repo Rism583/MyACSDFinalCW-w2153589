@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import './Styles/Header.css';
 
 
-const Header = () => {
+const Header = ({ favourites }) => {
     return (
 
         //main header container
@@ -33,6 +33,9 @@ const Header = () => {
                 <div className="nav-favourite-count" >
                     <NavLink to="/favourites" className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'}>
                         Favourites
+                        {favourites.length > 0 && (
+                            <span className="favourite-count-badge">{favourites.length}</span>
+                        )}
                     </NavLink>
                 </div>
 

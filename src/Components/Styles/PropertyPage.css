@@ -48,8 +48,10 @@
 .main-view {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #222;  
     transition: transform 0.5s ease;
+    image-rendering: high-quality;
 }
 
 .main-view:hover {
@@ -69,7 +71,7 @@
     width: 120px;
     height: 80px;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: contain;
     cursor: pointer;
     opacity: 0.6;
     transition: all 0.3s ease;
@@ -194,6 +196,9 @@
     width: 100%;
     border-radius: 15px;
     transition: transform 0.4s ease;
+    object-fit: contain;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .floor-plan-img:hover {

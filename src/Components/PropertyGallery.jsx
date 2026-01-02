@@ -143,7 +143,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
 
                 <main className='main-content'>
                     {/* Favourites Section */}
-                    {showFavourites ? (
+                    {(showFavourites || viewMode === "favourites") ? (
                         <div className="favorites-container"
                         onDragOver={handleDragOver}
                         onDrop={handleDrop}>

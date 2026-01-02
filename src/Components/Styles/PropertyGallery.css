@@ -25,7 +25,7 @@
 
 /* Sidebar behavior */
 .sidebar-container {
-    flex: 0 0 400px; /* Fixed width sidebar */
+    flex: 0 0 350px; /* Fixed width sidebar */
     position: sticky;
     top: 120px; /* Adjust based on your header height */
     display: flex;
