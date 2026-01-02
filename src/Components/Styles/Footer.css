@@ -1,8 +1,30 @@
+/* Main Footer Container */
 .app-footer {
-    background-color: var(--primary-purple); /* #3d0148 */
+    background-color: var(--primary-purple);
     color: white;
-    padding: 60px 5% 20px; /* Generous top padding for a "premium" feel */
-    margin-top: auto; /* Ensures footer stays at bottom */
+    padding: 80px 5% 30px; /* ENHANCED: More breathable padding */
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+    /* ENHANCED: Entrance animation matching the header */
+    animation: slideUpFade 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideUpFade {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ENHANCED: Background decorative shimmer */
+.app-footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 120%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(202, 44, 146, 0.05) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .footer-content {
@@ -11,29 +33,55 @@
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    flex-wrap: wrap; /* Essential for mobile responsiveness */
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-section, .footer-links, .footer-contact {
     flex: 1;
-    min-width: 250px; /* Triggers the stack on smaller screens */
+    min-width: 250px;
+    transition: transform 0.4s ease;
 }
 
 /* Typography */
 .footer-content h4 {
-    font-family: var(--font-title); /* Montserrat */
+    font-family: var(--font-title);
     font-size: 1.3rem;
-    color: var(--accent-pink); /* #FFC4DA for clear contrast */
-    margin-bottom: 20px;
+    color: var(--accent-pink);
+    margin-bottom: 25px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+/* ENHANCED: Underline effect for footer headers */
+.footer-content h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--action-magenta);
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.footer-section:hover h4::after {
+    width: 100%;
 }
 
 .footer-content p, .footer-content li {
-    font-family: var(--font-body); /* Inter */
+    font-family: var(--font-body);
     font-size: 0.95rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8); /* Slightly dimmed for better visual hierarchy */
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.footer-section:hover p {
+    color: rgba(255, 255, 255, 1);
 }
 
 /* Links Styling */
@@ -42,49 +90,48 @@
     padding: 0;
 }
 
+.footer-links li {
+    margin-bottom: 12px;
+    /* ENHANCED: Staggered entrance for footer list items */
+    animation: navItemPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
 .footer-links a {
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    transition: var(--transition-smooth);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-block;
-    padding: 5px 0;
 }
 
 .footer-links a:hover {
-    color: var(--action-magenta); /* #ca2c92 */
-    transform: translateX(5px); /* Interactive slide effect */
+    color: var(--action-magenta);
+    transform: translateX(10px) scale(1.1); /* Matches header link weight */
+    text-shadow: 0 0 10px rgba(202, 44, 146, 0.3);
 }
 
 /* Bottom Bar */
 .footer-bottom {
-    border-top: 1px solid rgba(255, 196, 218, 0.2); /* Subtle line using accent pink */
-    margin-top: 40px;
-    padding-top: 20px;
+    border-top: 1px solid rgba(255, 196, 218, 0.15);
+    margin-top: 60px;
+    padding-top: 30px;
     text-align: center;
     font-size: 0.85rem;
     color: var(--accent-pink);
+    letter-spacing: 1px;
+    /* ENHANCED: Subtle fade-in */
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* MOBILE RESPONSIVE LOGIC */
 @media (max-width: 768px) {
-    .app-footer {
-        padding: 40px 20px 20px;
-        text-align: center; /* Center text for easier reading on phones */
-    }
-
-    .footer-content {
-        flex-direction: column; /* Stack sections vertically */
-        align-items: center;
-        gap: 30px;
-    }
-
-    .footer-links ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-links a:hover {
-        transform: scale(1.1); /* Changes slide to zoom for mobile */
-    }
+    .app-footer { padding: 60px 20px 30px; text-align: center; }
+    .footer-content { flex-direction: column; align-items: center; gap: 40px; }
+    .footer-links ul { display: flex; flex-direction: column; align-items: center; }
+    .footer-links a:hover { transform: scale(1.15) translateY(-3px); }
+    .footer-content h4::after { left: 50%; transform: translateX(-50%); }
 }

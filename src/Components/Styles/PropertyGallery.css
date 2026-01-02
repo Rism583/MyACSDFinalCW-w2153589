@@ -5,33 +5,45 @@
     text-align: center;
     margin-bottom: 2rem;
     color: var(--primary-purple);
+    /* ENHANCED: Entrance animation for the title */
+    animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Side-by-Side Layout */
 .gallery-layout {
     display: flex;
     gap: 2.5rem;
-    align-items: flex-start;/* Keeps sidebar at top to allow sticking */
+    align-items: flex-start;
     flex-direction: row;
     justify-content: center;
     max-width: 1300px;
-    margin: 0 auto; /* Center the layout */
+    margin: 0 auto;
     padding: 20px;
-    
-
-
+    /* ENHANCED: Perspective for 3D child effects */
+    perspective: 1000px;
 }
-
 
 /* Sidebar behavior */
 .sidebar-container {
-    flex: 0 0 350px; /* Fixed width sidebar */
+    flex: 0 0 350px;
     position: sticky;
-    top: 120px; /* Adjust based on your header height */
+    top: 120px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-top: 0;
+    /* ENHANCED: Smooth slide-in from left */
+    animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 /* Main content area */
@@ -47,6 +59,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 0;
+    /* ENHANCED: Elements appear one by one */
 }
 
 /* Toggle Favourites Button Styling */
@@ -59,11 +72,20 @@
     letter-spacing: 1px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-soft);
+    border: none;
+    cursor: pointer;
+    /* ENHANCED: Springy transition */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .view-fav-btn:hover {
     background-color: var(--primary-purple);
-    transform: scale(1.03);
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 10px 20px rgba(61, 1, 72, 0.2);
+}
+
+.view-fav-btn:active {
+    transform: scale(0.95);
 }
 
 /* Favourites Display Card */
@@ -74,28 +96,55 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    transition: var(--transition-smooth);
+    border: 1px solid rgba(0,0,0,0.05);
+    /* ENHANCED: Complex entrance and hover logic */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s ease, 
+                background-color 0.3s ease;
+    animation: popIn 0.5s ease backwards;
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .favourite-card:hover {
-    transform: translateX(10px);
+    transform: translateX(15px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    background-color: #fafafa;
 }
 
 .fav-prop-img {
     width: 150px;
     height: 100px;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.favourite-card:hover .fav-prop-img {
+    transform: scale(1.1);
 }
 
 .fav-prop-details {
     padding: 1rem;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fav-prop-details h3 {
+    font-size: 1rem;
+    color: var(--primary-purple);
+    margin-bottom: 5px;
 }
 
 /* Mobile Responsive Overrides */
 @media (max-width: 1024px) {
     .gallery-layout {
-        flex-direction: column; /* Stacks search above properties */
+        flex-direction: column;
+        align-items: center;
     }
 
     .sidebar-container {
@@ -103,9 +152,15 @@
         width: 100%;
         position: relative;
         top: 0;
+        animation: fadeIn 0.8s ease;
     }
 
     .property-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        width: 100%;
+    }
+
+    .favourite-card:hover {
+        transform: translateY(-5px); /* Changed for mobile ergonomics */
     }
 }

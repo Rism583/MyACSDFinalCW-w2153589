@@ -149,7 +149,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                         onDrop={handleDrop}>
                             <h2>My Favourites ({favourites.length})</h2>
                             {favourites.length === 0
-                                ? <p className="no-favs-msg">No Favourite prperties added yet</p>
+                                ? <p className="no-favs-msg">No Favourite properties added yet</p>
                                 : <div className="favs-list">
 
                                     {/* Mapping through the favourites array to display each favourite property */}

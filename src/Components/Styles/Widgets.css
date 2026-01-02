@@ -5,8 +5,15 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 18px;
-    transition: var(--transition-smooth);
+    margin-bottom: 22px; /* Slightly increased for better breathing room */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* ENHANCED: Staggered entrance animation */
+    animation: widgetFadeIn 0.5s ease backwards;
+}
+
+@keyframes widgetFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* 2. Label Styling */
@@ -15,9 +22,18 @@
 .range-widget-container label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--primary-purple); /* Brand consistency */
+    color: var(--primary-purple);
     letter-spacing: 0.3px;
-    transition: color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+}
+
+/* ENHANCED: Label reacts when the input is focused */
+.date-widget-container:focus-within label,
+.type-widget-container:focus-within label,
+.range-widget-container:focus-within label {
+    color: var(--action-magenta);
+    transform: scale(1.05);
 }
 
 /* 3. Input & Select Core Styling */
@@ -27,14 +43,16 @@
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
-    border-radius: 10px;
+    border-radius: 12px; /* Smoother corners */
     font-family: var(--font-body);
     font-size: 0.95rem;
     color: var(--neutral-charcoal);
     background-color: #ffffff;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Professional easing */
+    /* ENHANCED: Complex transition for professional feel */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-sizing: border-box;
+    outline: none;
 }
 
 /* 4. Interactive Hover & Focus Effects */
@@ -42,16 +60,25 @@
 .type-widget-container select:hover,
 .range-widget-container select:hover {
     border-color: var(--accent-pink);
-    background-color: #fafafa;
+    background-color: #fff;
+    transform: translateY(-2px); /* ENHANCED: Gentle lift on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .date-widget-container input:focus,
 .type-widget-container select:focus,
 .range-widget-container select:focus {
-    outline: none;
     border-color: var(--action-magenta);
-    box-shadow: 0 0 0 4px rgba(202, 44, 146, 0.15); /* Soft glow effect */
-    transform: translateY(-1px); /* Subtle lift on focus */
+    background-color: #fff;
+    /* ENHANCED: Dynamic glow and scale */
+    box-shadow: 0 0 0 4px rgba(202, 44, 146, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px) scale(1.01); 
+}
+
+/* ENHANCED: Active "Click" feedback */
+.date-widget-container input:active,
+.type-widget-container select:active {
+    transform: translateY(-1px) scale(0.99);
 }
 
 /* 5. Range-Specific Layout (Min/Max Row) */
@@ -62,15 +89,22 @@
 }
 
 .range-inputs select {
-    flex: 1; /* Makes Min/Max boxes equal width */
+    flex: 1;
 }
 
 .range-inputs span {
     font-weight: bold;
     color: var(--accent-pink);
+    /* ENHANCED: Dash pulses slightly */
+    animation: pulseDash 2s infinite;
 }
 
-/* 6. Custom Styling for Select Arrows (Modern Look) */
+@keyframes pulseDash {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* 6. Custom Styling for Select Arrows */
 .type-widget-container select,
 .range-widget-container select {
     appearance: none;
@@ -84,18 +118,20 @@
 /* 7. Mobile Responsiveness */
 @media (max-width: 600px) {
     .range-inputs {
-        flex-direction: column; /* Stacks Min/Max on small phones */
+        flex-direction: column;
         gap: 8px;
     }
     
     .range-inputs span {
-        display: none; /* Hide the dash on mobile stack */
+        display: none;
     }
 
     .date-widget-container input,
     .type-widget-container select,
     .range-widget-container select {
-        padding: 14px; /* Larger tap targets for mobile */
+        padding: 14px;
         font-size: 1rem;
+        /* ENHANCED: Disable hover transforms on touch devices */
+        transform: none !important;
     }
 }

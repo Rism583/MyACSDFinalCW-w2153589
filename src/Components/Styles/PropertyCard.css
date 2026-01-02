@@ -4,49 +4,57 @@
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    transition: var(--transition-smooth); /* Smooth movement */
     display: flex;
     flex-direction: column;
-    cursor: grab; /* Visual cue for draggable */
+    cursor: grab;
     border: 1px solid rgba(0,0,0,0.05);
+    /* ENHANCED: Faster response on initial touch, slower on release */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    position: relative;
+    will-change: transform; /* Performance optimization for animations */
 }
 
 /* 2. Hover & Transformation Effects */
 .property-card:hover {
-    transform: translateY(-10px); /* Lifts the card up */
-    box-shadow: var(--shadow-hover); /* Vibrant purple-tinted shadow */
+    transform: translateY(-12px) scale(1.02); /* ENHANCED: Subtle lift + growth */
+    box-shadow: 0 20px 40px rgba(61, 1, 72, 0.15); 
+    border-color: var(--action-magenta);
 }
 
 .property-card:active {
     cursor: grabbing;
+    transform: scale(0.98); /* ENHANCED: "Pressed" effect when clicked */
 }
 
 /* 3. Image Section with Zoom Effect */
 .property-img-container {
     width: 100%;
     height: 220px;
-    overflow: hidden; /* Clips the zoomed image */
+    overflow: hidden;
     position: relative;
     padding-top: 25px;
-    background-color: #fff;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
 }
 
 .property-img {
-    width: 100%;
+    width: 90%; /* ENHANCED: Fixed width to ensure frame stays visible */
     height: 100%;
     object-fit: contain;
-    background-color: #f8f8f8;
-    transition: transform 0.5s ease; /* Longer zoom for elegance */
-    image-rendering: -webkit-optimize-contrast; /* Sharp rendering */
+    background-color: transparent;
     margin: 0 auto;
     display: block;
     border-radius: 12px;
     image-rendering: -webkit-optimize-contrast;
-    
+    /* ENHANCED: Smooth zoom and slight rotation */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease;
 }
 
 .property-card:hover .property-img {
-    transform: scale(1.05); /* Subtle zoom in on hover */
+    transform: scale(1.08) rotate(1deg); /* ENHANCED: Immersive tilt zoom */
+    filter: brightness(1.05); /* ENHANCED: Slight pop in brightness */
 }
 
 /* 4. Details Section */
@@ -56,6 +64,7 @@
     flex-direction: column;
     gap: 10px;
     flex-grow: 1;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 }
 
 .property-type {
@@ -63,6 +72,11 @@
     font-size: 1.2rem;
     color: var(--primary-purple);
     margin: 0;
+    transition: color 0.3s ease;
+}
+
+.property-card:hover .property-type {
+    color: var(--action-magenta); /* ENHANCED: Color shift on hover */
 }
 
 .property-description {
@@ -70,6 +84,7 @@
     color: var(--neutral-charcoal);
     opacity: 0.8;
     line-height: 1.5;
+    transition: opacity 0.3s ease;
 }
 
 .property-location {
@@ -78,13 +93,22 @@
     color: var(--action-magenta);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .property-price {
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--primary-purple);
-    margin-top: auto; /* Pushes price to the bottom */
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-price {
+    transform: scale(1.1); /* ENHANCED: Price grows when looking at card */
+    transform-origin: left;
 }
 
 /* 5. Buttons Section */
@@ -105,11 +129,15 @@
     border-radius: 6px;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: var(--transition-smooth);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .view-details-btn:hover {
-    background-color: var(--action-magenta);
+    background-color: #fff;
+    color: var(--primary-purple);
+    border-color: var(--primary-purple);
+    transform: translateY(-3px); /* ENHANCED: Floating button */
 }
 
 .favourite-button {
@@ -119,36 +147,47 @@
     padding: 10px;
     font-weight: 700;
     border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .favourite-button:hover {
-    border-color: var(--action-magenta);
-    background-color: #fff;
-    color: var(--action-magenta);
+    background-color: var(--action-magenta);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(202, 44, 146, 0.3);
 }
 
 .favourite-added-msg {
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--action-magenta);
-    animation: fadeIn 0.5s ease;
+    /* ENHANCED: Pop and wiggle animation */
+    animation: popWiggle 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+@keyframes popWiggle {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); }
 }
 
 /* 6. MOBILE RESPONSIVE */
 @media (max-width: 480px) {
     .property-card {
-        flex-direction: row; /* Horizontal cards on small mobile */
-        height: 180px;
+        flex-direction: row;
+        height: auto;
+        min-height: 180px;
+    }
+
+    .property-card:hover {
+        transform: translateX(5px); /* ENHANCED: Slide right instead of up on mobile */
     }
 
     .property-img-container {
         width: 40%;
-        height: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .property-details {
@@ -162,6 +201,6 @@
 
     .Buttons {
         flex-direction: column;
-        gap: 5px;
+        gap: 8px;
     }
 }

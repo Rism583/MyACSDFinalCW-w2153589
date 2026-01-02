@@ -1,16 +1,25 @@
+/* Main Header Container */
 .app-header {
-    background-color: var(--primary-purple); /* #3d0148 */
-    padding: 0.5rem 20px;
+    background-color: var(--primary-purple);
+    padding: 1.5rem 20px;
     width: 100%;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; /* Keeps it visible as user scrolls */
+    position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow-standard);
     color: white;
+    /* ENHANCED: Professional easing and entrance */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideDownFade 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideDownFade {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Logo and Branding Section */
@@ -19,24 +28,36 @@
     align-items: center;
     gap: 15px;
     flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-container:hover {
+    transform: translateX(8px) scale(1.02);
 }
 
 .app-logo {
-    height: 150px; /* Adjust based on your logo shape */
+    height: 140px; 
     width: auto;
-    transition: var(--transition-smooth);
-
+    background-color: white;
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* ENHANCED: Spring-back rotation */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+.app-logo:hover {
+    transform: rotate(8deg) scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.05);
+}
+
 .brand-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: left;
-}
-.app-logo:hover {
-    transform: rotate(5deg) scale(1.1); /* Fun, active interaction */
+    perspective: 1000px;
 }
 
 .app-title {
@@ -47,16 +68,30 @@
     letter-spacing: -1px;
     line-height: 1;
     text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+
+.brand-text:hover .app-title {
+    color: var(--accent-pink);
+    text-shadow: 3px 3px 0px var(--action-magenta);
+    transform: translateZ(30px); /* 3D pop effect */
 }
 
 .app-tagline {
     font-family: var(--font-body);
     font-size: 0.8rem;
-    color: var(--accent-pink); /* #FFC4DA - subtle contrast */
+    color: var(--accent-pink); 
     font-style: italic;
     margin-top: 6px;
     display: block;
     letter-spacing: 0.5px;
+    /* ENHANCED: Delayed staggered entrance */
+    animation: slideInRight 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s both;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(-30px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
 /* Navigation Section */
@@ -72,19 +107,23 @@
     font-weight: 500;
     font-size: 1.1rem;
     position: relative;
-    padding: 5px 0;
-    transition: var(--transition-smooth);
+    padding: 10px 0;
+    /* ENHANCED: Sequential pop-in animation */
+    animation: navItemPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
-/* Visual Feedback: Hover & Active States */
+.nav-link:nth-child(1) { animation-delay: 0.2s; }
+.nav-link:nth-child(2) { animation-delay: 0.3s; }
+.nav-favourite-count { animation: navItemPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both 0.4s; }
+
+@keyframes navItemPop {
+    from { transform: scale(0.6) translateY(-10px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
 .nav-link:hover {
-    color: var(--action-magenta); /* #ca2c92 */
-}
-
-/* The "Active" line effect */
-.nav-link.active-link {
-    color: var(--action-magenta);
-    font-weight: 700;
+    color: var(--accent-pink);
+    transform: translateY(-4px); /* Floating interaction */
 }
 
 .nav-link.active-link::after {
@@ -93,67 +132,48 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background-color: var(--action-magenta);
-    border-radius: 2px;
-}
-.nav-favourite-count {
-    position: relative;
-    display: inline-block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--action-magenta), var(--accent-pink));
+    border-radius: 10px;
+    animation: lineGrow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+@keyframes lineGrow {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Favourites Badge */
 .favourite-count-badge {
     background-color: var(--action-magenta);
     color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
+    font-size: 0.75rem;
+    padding: 3px 7px;
     border-radius: 50%;
     position: absolute;
-    top: -5px;
-    right: -10px;
+    top: -8px;
+    right: -12px;
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    /* ENHANCED: Infinite heartbeat pulse */
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+               pulseHeart 2.5s infinite 0.5s;
 }
 
-@keyframes popIn {
-    0% { transform: scale(0); }
+@keyframes pulseHeart {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.2); box-shadow: 0 0 15px var(--action-magenta); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
-/* Responsive adjustment for small screens */
+
+/* Responsive adjustment */
 @media (max-width: 768px) {
-    .app-header {
-        flex-direction: column;
-        padding: 1rem;
-        text-align: center;
-    }
-    
-    .logo-container {
-        flex-direction: column;
-        margin-bottom: 15px;
-    }
-
-    .navigation-bar {
-        margin-top: 20px;
-        width: 100%;
-        justify-content: space-around; /* Spreads links evenly on phone */
-        gap: 10px;
-    }
-
-    .nav-link {
-        font-size: 0.9rem; /* Smaller font for mobile */
-    }
-
-    .app-tagline {
-        display: none; /* Hide tagline on mobile for more space */
-    }
-    .app-logo {
-        height: 65px; /* Scale down slightly for smaller screens */
-    }
-    
-    .brand-text {
-        text-align: center; /* Center text on mobile stacks */
-    }
-
-
+    .app-header { flex-direction: column; padding: 1.5rem 1rem; }
+    .logo-container { flex-direction: column; margin-bottom: 10px; }
+    .navigation-bar { margin-top: 15px; width: 100%; justify-content: center; gap: 20px; }
+    .nav-link:hover { transform: scale(1.05); }
+    .app-logo { height: 80px; transform: none !important; }
+    .brand-text { text-align: center; }
 }

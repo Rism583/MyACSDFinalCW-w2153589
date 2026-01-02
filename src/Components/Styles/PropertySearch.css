@@ -5,14 +5,48 @@
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-soft);
     border-left: 6px solid var(--primary-purple);
-    transition: var(--transition-smooth);
-    height: fit-content; /* Important for sticky behavior */
+    height: fit-content;
+    position: relative;
+    overflow: hidden; /* Clips the shimmer effect */
+    
+    /* ENHANCED: Faster response on hover with cubic-bezier */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    
+    /* ENHANCED: Entrance animation for the whole sidebar */
+    animation: sidebarSlideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes sidebarSlideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ENHANCED: Subtle shimmer sweep that runs once on load */
+.search-section::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(30deg);
+    animation: shimmerSweep 3s infinite;
+}
+
+@keyframes shimmerSweep {
+    0% { left: -60%; }
+    20% { left: 120%; }
+    100% { left: 120%; }
 }
 
 /* Subtle lift effect on the whole section */
 .search-section:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(61, 1, 72, 0.15);
+    transform: translateY(-5px) scale(1.01); /* ENHANCED: Lift and slight grow */
+    border-left-color: var(--action-magenta); /* Color shift on hover */
 }
 
 .search-section h2 {
@@ -22,6 +56,11 @@
     margin-bottom: 1.5rem;
     border-bottom: 2px solid var(--bg-off-white);
     padding-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.search-section:hover h2 {
+    color: var(--action-magenta);
 }
 
 /* Style for individual filter boxes */
@@ -30,12 +69,32 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    /* ENHANCED: Staggered entrance for children items */
+    animation: itemFadeUp 0.5s ease backwards;
+}
+
+/* Staggered delay for the first 5 filters */
+.filter-container:nth-child(1) { animation-delay: 0.1s; }
+.filter-container:nth-child(2) { animation-delay: 0.2s; }
+.filter-container:nth-child(3) { animation-delay: 0.3s; }
+.filter-container:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes itemFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .filter-container label, .widget-container label {
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--neutral-charcoal);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* ENHANCED: Label pops when parent is hovered or focused */
+.filter-container:hover label {
+    color: var(--primary-purple);
+    transform: translateX(3px);
 }
 
 /* Inputs, Selects, and Widgets */
@@ -49,8 +108,14 @@
     border: 2px solid var(--bg-off-white);
     border-radius: 8px;
     font-family: var(--font-body);
-    transition: var(--transition-smooth);
     background-color: #fff;
+    /* ENHANCED: Multi-property transition */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.search-section input[type="text"]:hover,
+.search-section select:hover {
+    transform: translateY(-2px); /* Lift on individual inputs */
 }
 
 /* Active interaction for inputs */
@@ -58,7 +123,8 @@
 .search-section select:focus {
     outline: none;
     border-color: var(--action-magenta);
-    box-shadow: 0 0 0 4px rgba(202, 44, 146, 0.1);
+    box-shadow: 0 0 0 4px rgba(202, 44, 146, 0.15);
+    transform: scale(1.02); /* ENHANCED: Grow slightly on focus */
 }
 
 /* Responsive Grid for RangeWidgets (Min/Max selectors) */
@@ -66,4 +132,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/* ENHANCED: Reset Filters Button styling (if you have one) */
+.reset-filters-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: none;
+    border: 1px dashed var(--neutral-charcoal);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-filters-btn:hover {
+    background-color: var(--bg-off-white);
+    border-style: solid;
+    color: var(--action-magenta);
+    transform: rotate(-1deg);
 }
