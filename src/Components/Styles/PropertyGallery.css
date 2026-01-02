@@ -11,22 +11,34 @@
 .gallery-layout {
     display: flex;
     gap: 2.5rem;
-    align-items: flex-start; /* Keeps sidebar at top to allow sticking */
+    align-items: flex-start;/* Keeps sidebar at top to allow sticking */
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1300px;
+    margin: 0 auto; /* Center the layout */
+    padding: 20px;
+    
+
+
 }
+
 
 /* Sidebar behavior */
 .sidebar-container {
-    flex: 0 0 320px; /* Fixed width sidebar */
+    flex: 0 0 400px; /* Fixed width sidebar */
     position: sticky;
     top: 120px; /* Adjust based on your header height */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    margin-top: 0;
 }
 
 /* Main content area */
 .main-content {
     flex: 1;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* Property Grid */
@@ -34,6 +46,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    margin-top: 0;
 }
 
 /* Toggle Favourites Button Styling */

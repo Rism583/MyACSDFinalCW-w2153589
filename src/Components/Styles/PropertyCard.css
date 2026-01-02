@@ -1,0 +1,158 @@
+/* 1. Main Card Container */
+.property-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth); /* Smooth movement */
+    display: flex;
+    flex-direction: column;
+    cursor: grab; /* Visual cue for draggable */
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* 2. Hover & Transformation Effects */
+.property-card:hover {
+    transform: translateY(-10px); /* Lifts the card up */
+    box-shadow: var(--shadow-hover); /* Vibrant purple-tinted shadow */
+}
+
+.property-card:active {
+    cursor: grabbing;
+}
+
+/* 3. Image Section with Zoom Effect */
+.property-img-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden; /* Clips the zoomed image */
+    position: relative;
+}
+
+.property-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* Longer zoom for elegance */
+}
+
+.property-card:hover .property-img {
+    transform: scale(1.1); /* Subtle zoom in on hover */
+}
+
+/* 4. Details Section */
+.property-details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.property-type {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    color: var(--primary-purple);
+    margin: 0;
+}
+
+.property-description {
+    font-size: 0.9rem;
+    color: var(--neutral-charcoal);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.property-location {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--action-magenta);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.property-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-purple);
+    margin-top: auto; /* Pushes price to the bottom */
+}
+
+/* 5. Buttons Section */
+.Buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.view-details-btn {
+    flex: 1;
+    text-align: center;
+    background-color: var(--primary-purple);
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.view-details-btn:hover {
+    background-color: var(--action-magenta);
+}
+
+.favourite-button {
+    flex: 1;
+    background-color: var(--accent-pink);
+    color: var(--primary-purple);
+    padding: 10px;
+    font-weight: 700;
+    border: 2px solid transparent;
+}
+
+.favourite-button:hover {
+    border-color: var(--action-magenta);
+    background-color: #fff;
+    color: var(--action-magenta);
+}
+
+.favourite-added-msg {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--action-magenta);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* 6. MOBILE RESPONSIVE */
+@media (max-width: 480px) {
+    .property-card {
+        flex-direction: row; /* Horizontal cards on small mobile */
+        height: 180px;
+    }
+
+    .property-img-container {
+        width: 40%;
+        height: 100%;
+    }
+
+    .property-details {
+        width: 60%;
+        padding: 12px;
+    }
+
+    .property-price {
+        font-size: 1.1rem;
+    }
+
+    .Buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
