@@ -1,0 +1,67 @@
+/* Container for the search sidebar */
+.search-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    border-left: 6px solid var(--primary-purple);
+    transition: var(--transition-smooth);
+    height: fit-content; /* Important for sticky behavior */
+}
+
+/* Subtle lift effect on the whole section */
+.search-section:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.search-section h2 {
+    font-family: var(--font-title);
+    color: var(--primary-purple);
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--bg-off-white);
+    padding-bottom: 0.5rem;
+}
+
+/* Style for individual filter boxes */
+.filter-container, .widget-container {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-container label, .widget-container label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--neutral-charcoal);
+}
+
+/* Inputs, Selects, and Widgets */
+.search-section input[type="text"],
+.search-section select,
+.search-section input[type="date"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--bg-off-white);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    transition: var(--transition-smooth);
+    background-color: #fff;
+}
+
+/* Active interaction for inputs */
+.search-section input:focus, 
+.search-section select:focus {
+    outline: none;
+    border-color: var(--action-magenta);
+    box-shadow: 0 0 0 4px rgba(202, 44, 146, 0.1);
+}
+
+/* Responsive Grid for RangeWidgets (Min/Max selectors) */
+.range-widget-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
