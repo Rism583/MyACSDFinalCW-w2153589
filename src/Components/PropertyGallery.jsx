@@ -262,7 +262,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                                                 }}
                                                     
                                                 onClick={() => removeFromFavourites(favourite.id)}>                                
-                                                Remove from Favourites
+                                                Remove from Favourites 🖤
                                             </button>
                                         </div>
                                     ))}
@@ -271,7 +271,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                             {/* Clear all favourites button */}
                             {favourites.length > 0 && (
                                 <button className="clear-favs-button" onClick={clearFavourites}>
-                                    Clear All Favourites
+                                    Clear All Favourites ❤️
                                 </button>
                             )}
                         </div>

@@ -26,6 +26,7 @@ const TypeWidget = ({ label, value, onChange }) => { //TypeWidget component to h
                         {type.charAt(0).toUpperCase() + type.slice(1)} {/* Capitalizing first letter */}
                     </option>
                 ))}
+            data-testid="type-select"
             </select>
         </div>
     );
