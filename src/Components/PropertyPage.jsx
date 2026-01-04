@@ -125,10 +125,10 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                             <h2>Location Map</h2>
                             <iframe
                                 title="Property Location"
-                                src={`https://www.google.com/maps?q=${encodeURIComponent(property.location + " " + property.postcode)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                                width="100%"
+                                src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location + " " + property.postcode)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                                width="150%"
                                 height="450"
-                                style={{ border: 0 }}
+                                style={{ border: 0, borderRadius: '15px' }}
                                 allowFullScreen=""
                                 loading="lazy"
                             ></iframe>
