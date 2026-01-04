@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import PropertyCard from './PropertyCard';
 import './Styles/PropertyGallery.css';
 import PropertySearch from './PropertySearch';
@@ -119,6 +119,19 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
             addToFavourites(foundProperty);
         }
     }
+    //Resetting filters when view mode changes
+    useEffect(() => {
+        setFilter({
+            type: 'any',
+            minPrice: "No Min",
+            maxPrice: "No Max",
+            minBedrooms: "No min",
+            maxBedrooms: "No max",
+            startDate: '2000-01-31',
+            endDate: '2026-12-31',
+            postcode: ''
+        });
+    }, [viewMode]);
     return (
 
         //Main container for the property gallery
@@ -130,6 +143,21 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                 {viewMode === "search" && (
                     <aside className="sidebar-container"> 
                         <PropertySearch filter={filter} setFilter={setFilter} />
+
+                        <button className='reset-filters-btn' onClick={() => {
+                            setFilter({
+                                type: 'any',
+                                minPrice: "No Min",
+                                maxPrice: "No Max",
+                                minBedrooms: "No min",
+                                maxBedrooms: "No max",
+                                startDate: '2000-01-31',
+                                endDate: '2026-12-31',
+                                postcode: ''
+                            });
+                        }}>
+                            Clear All Filters
+                        </button>
                         {/* Toggle Favourites Button */}
                         <button className="view-fav-btn" 
                             onClick={() => setShowFavourites(!showFavourites)}
