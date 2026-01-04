@@ -188,6 +188,48 @@
     align-self: center;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+/* Ensure the body remains scrollable during drag events */
+body.dragging {
+    overflow-y: auto !important;
+}
+
+/* Make the property card "float" better when being dragged */
+.property-card[draggable="true"]:active {
+    cursor: grabbing;
+    opacity: 0.8;
+}
+
+/* Make the cursor indicate removal when dragging from favorites */
+.favourite-card[draggable="true"] {
+    cursor: grab;
+}
+
+.favourite-card[draggable="true"]:active {
+    cursor: grabbing;
+    opacity: 0.7;
+}
+/* Feedback when dragging a card over its own remove button */
+.remove-fav-button.drag-target {
+    background-color: var(--primary-purple) !important;
+    color: white !important;
+    border-color: var(--primary-purple) !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(61, 1, 72, 0.4);
+}
+
+/* Helps mobile/tablet browsers handle the drag-and-scroll combo */
+.property-grid-container {
+   transition: all 0.3s ease;
+    min-height: 80vh; /* Essential to ensure there is a large area to drop on */
+    border: 2px solid transparent; 
+    width: 100%;
+}
+.property-grid-container.remove-drop-zone {
+    background-color: rgba(202, 44, 146, 0.05); 
+    border: 2px dashed var(--action-magenta);
+    border-radius: 20px;
+    transform: scale(0.99); /* Slight "sink" effect */
+}
 
 .remove-fav-button:hover {
     background-color: var(--action-magenta);

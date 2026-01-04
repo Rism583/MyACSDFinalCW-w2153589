@@ -103,7 +103,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
 
 
     const [isDraggingOver, setIsDraggingOver] = useState(false); // State to track dragging status
-    
+
     //Handler for drag over event
     const handleDragOver = (e) => {
         e.preventDefault(); // Prevent default to allow drop
@@ -123,11 +123,29 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
         //Getting the dragged property ID from the data transfer object
         const draggedPropertyId = e.dataTransfer.getData('propertyId');
 
-        //Finding the dragged property from the properties list
-        const foundProperty = properties.find((prop) => prop.id === draggedPropertyId);
-        if (foundProperty) {
-            addToFavourites(foundProperty);
+        //Checking if the property is already in favourites
+        const alreadyInFavs = favourites.some((fav) => fav.id === draggedPropertyId);
+
+        if (!alreadyInFavs) {
+           //Finding the dragged property from the properties list
+            const foundProperty = properties.find((prop) => prop.id === draggedPropertyId);
+            if (foundProperty) {
+                addToFavourites(foundProperty);
+        }  
         }
+
+        
+    }
+    //Handler for removing property from favourites via drag and drop
+    const handleRemoveDrop = (e) => {
+        e.preventDefault();
+        setIsDraggingOver(false); // Reset dragging state on drop
+        const draggedPropertyId = e.dataTransfer.getData('propertyId');
+        
+        //Removing the property from favourites if it already exists
+        if (favourites.some((fav) => fav.id === draggedPropertyId)) {
+            removeFromFavourites(draggedPropertyId);
+        }   
     }
     //Resetting filters when view mode changes
     useEffect(() => {
@@ -189,16 +207,21 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                 <main className='main-content'>
                     {/* Favourites Section */}
                     {(showFavourites || viewMode === "favourites") ? (
-                        <div className="favorites-container"
-                        onDragOver={handleDragOver}
-                        onDrop={handleDrop}>
+                        <div className="favorites-container">
+
                             {favourites.length === 0
                                 ? <p className="no-favs-msg">No Favourite properties added yet</p>
                                 : <div className="favs-list">
 
                                     {/* Mapping through the favourites array to display each favourite property */}
                                     {favourites.map((favourite) => (
-                                        <div className="favourite-card" key={favourite.id}>
+                                        <div className="favourite-card" 
+                                        key={favourite.id}
+                                        draggable="true"
+                                        onDragStart={(e) => {
+                                            e.dataTransfer.setData('propertyId', favourite.id);
+                                        }}
+                                        >
 
                                             {/* Favourite Property Image and Details Section */}
                                             <img src ={favourite.picture} alt={favourite.type} className="fav-prop-img "/>
@@ -211,6 +234,20 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                                             {/* Remove from favourites button */}
                                             <button 
                                                 className="remove-fav-button"
+                                                onDragOver={(e) => {
+                                                    e.preventDefault();
+                                                    e.currentTarget.classList.add('drag-target');
+                                                }}
+                                                onDragLeave={(e) => {
+                                                    e.currentTarget.classList.remove('drag-target');
+                                                }}
+                                                onDrop={(e) => {
+                                                    e.preventDefault();
+                                                    e.currentTarget.classList.remove('drag-target');
+                                                    const draggedId = e.dataTransfer.getData('propertyId');
+                                                    removeFromFavourites(draggedId);
+                                                }}
+                                                    
                                                 onClick={() => removeFromFavourites(favourite.id)}>                                
                                                 Remove from Favourites
                                             </button>
@@ -226,7 +263,15 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                             )}
                         </div>
                     //show only the filtered properties section
-                    ): (<div className='property-grid-container'>
+                    ): (<div className={`property-grid-container ${isDraggingOver ? 'remove-drop-zone' : ''}`} 
+                            //Handlers for drag and drop to remove from favourites
+                            onDragOver={(e) => {                              e.preventDefault();
+                                setIsDraggingOver(true);
+                            }} 
+                            onDragLeave={() => {
+                                setIsDraggingOver(false);
+                            }}
+                            onDrop={handleRemoveDrop}>
                             {filteredProperties.length > 0 ? (
                                 <div className="property-grid">
                                     {/* Mapping through the properties array to create PropertyCard components */}  
