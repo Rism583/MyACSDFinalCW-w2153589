@@ -1,7 +1,7 @@
 import React from "react";
 import './Styles/Widgets.css';  
 
-const SearchWidget = ({ label, name, value, onChange }) => { //SearchWidget component to handle search inputs
+const SearchWidget = ({ label, name, value, onChange,placeholder }) => { //SearchWidget component to handle search inputs
     return (
         <div className="search-widget-container">
             <label htmlFor={name}>{label}</label>

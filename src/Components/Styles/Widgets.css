@@ -114,6 +114,90 @@
     background-size: 16px;
     padding-right: 40px;
 }
+/* 8. Search Widget Specific Styling */
+.search-widget-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* Matching your staggered entrance */
+    animation: widgetFadeIn 0.5s ease backwards;
+}
+
+.search-widget-container label {
+    font-size: 1.2rem; /* Matching your increased label size */
+    font-weight: 600;
+    color: var(--primary-purple);
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+}
+
+/* Label reaction on focus */
+.search-widget-container:focus-within label {
+    color: var(--action-magenta);
+    transform: scale(1.05);
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 1.1rem; /* Matching your increased body size */
+    color: var(--neutral-charcoal);
+    background-color: #ffffff;
+    cursor: text;
+    /* Matching your professional easing */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* Matching Hover & Focus Effects */
+.search-input:hover {
+    border-color: var(--accent-pink);
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+    border-color: var(--action-magenta);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(202, 44, 146, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px) scale(1.01);
+}
+
+/* Active "Click" feedback */
+.search-input:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+/* Custom styling for the "X" clear button in search inputs */
+.search-input::-webkit-search-cancel-button {
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ca2c92' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cline x1='18' y1='6' x2='6' y2='18'%3e%3c/line%3e%3cline x1='6' y1='6' x2='18' y2='18'%3e%3c/line%3e%3c/svg%3e");
+    background-size: contain;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.search-input::-webkit-search-cancel-button:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+    .search-input {
+        padding: 14px;
+        font-size: 1rem;
+        transform: none !important;
+    }
+}
 
 /* 7. Mobile Responsiveness */
 @media (max-width: 600px) {
@@ -132,6 +216,11 @@
         padding: 14px;
         font-size: 1rem;
         /* ENHANCED: Disable hover transforms on touch devices */
+        transform: none !important;
+    }
+    .search-input {
+        padding: 14px;
+        font-size: 1rem;
         transform: none !important;
     }
 }
