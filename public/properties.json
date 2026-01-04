@@ -14,7 +14,7 @@
                 "images/prop1/img1.jpg",
                 "images/prop1/img2.webp",
                 "images/prop1/img3.jpeg",
-                "images/prop1/img4.jpg",
+                "images/prop1/img4.webp",
                 "images/prop1/img5.webp",
                 "images/prop1/img6.jpg",
                 "images/prop1/img7.jpg",
@@ -44,9 +44,9 @@
                 "images/prop2/img3.jpg",
                 "images/prop2/img4.jpg",
                 "images/prop2/img5.jpg",
-                "images/prop2/img6.jpg",
+                "images/prop2/img6.jpeg",
                 "images/prop2/img7.webp",
-                "images/prop2/img8.jpg"
+                "images/prop2/img8.avif"
             ],
             "floorplan":"images/prop2/floor_plan.webp",
 			"url":"properties/prop2.html",
@@ -95,16 +95,16 @@
             "location":"Gloucester Place, Marylebone NW1",
             "picture":"images/prop4/main.webp",
             "images": [
-                "images/prop4/img1.avif",
+                "images/prop4/img1.webp",
                 "images/prop4/img2.webp",
                 "images/prop4/img3.jpg",
-                "images/prop4/img4.jpg",
-                "images/prop4/img5.jpg",
+                "images/prop4/img4.webp",
+                "images/prop4/img5.avif",
                 "images/prop4/img6.jpg",
-                "images/prop4/img7.jpg",
+                "images/prop4/img7.webp",
                 "images/prop4/img8.png"
             ],
-            "floorplan":"images/prop4/floor_plan.png",
+            "floorplan":"images/prop4/floor_plan.jpg",
             "url":"properties/prop4.html",
             "added": {
                 "month":"January",
@@ -128,9 +128,9 @@
                 "images/prop5/img3.jpg",
                 "images/prop5/img4.jpg",
                 "images/prop5/img5.avif",
-                "images/prop5/img6.jpg",
+                "images/prop5/img6.webp",
                 "images/prop5/img7.jpg",
-                "images/prop5/img8.jpg"
+                "images/prop5/img8.avif"
             ],
             "floorplan":"images/prop5/floor_plan.webp",
             "url":"properties/prop5.html",
@@ -149,9 +149,9 @@
             "description":"Charming two-bedroom cottage located in a peaceful village setting. This property boasts a cozy living room with a fireplace, a country-style kitchen, and a beautiful garden. Perfect for those seeking a tranquil lifestyle while still being within reach of Orpington's amenities.",
             "postcode":"BR6",
             "location":"Willow Lane, Village Near Orpington BR6",
-            "picture":"images/prop6/main.jpg",
+            "picture":"images/prop6/main.jpeg",
             "images": [
-                "images/prop6/img1.jpg",
+                "images/prop6/img1.jpeg",
                 "images/prop6/img2.avif",
                 "images/prop6/img3.jpg",
                 "images/prop6/img4.jpg",
@@ -180,7 +180,7 @@
             "picture":"images/prop7/main.jpg",
             "images": [
                 "images/prop7/img1.jpg",
-                "images/prop7/img2.webp",
+                "images/prop7/img2.jpg",
                 "images/prop7/img3.jpg",
                 "images/prop7/img4.jpg",
                 "images/prop7/img5.jpg",
@@ -188,7 +188,7 @@
                 "images/prop7/img7.jpg",
                 "images/prop7/img8.jpg"
             ],
-            "floorplan":"images/prop7/floor_plan.png",
+            "floorplan":"images/prop7/floor_plan.webp",
             "url":"properties/prop7.html",
             "added": {
                 "month":"June",
