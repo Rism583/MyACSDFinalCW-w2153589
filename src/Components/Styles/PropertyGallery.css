@@ -236,6 +236,19 @@
     font-size: 1.2rem;
     margin-top: 50px;
 }
+/* Styling for the drop zone feedback */
+.sidebar-container.dragging-active {
+    background-color: rgba(202, 44, 146, 0.05);
+    border: 2px dashed var(--action-magenta);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* Ensure the View Favourites button also reacts */
+.view-fav-btn.dragging-active {
+    background-color: var(--primary-purple);
+    animation: pulse 1s infinite;
+}
 /* Mobile Responsive Overrides */
 @media (max-width: 1024px) {
     .gallery-layout {

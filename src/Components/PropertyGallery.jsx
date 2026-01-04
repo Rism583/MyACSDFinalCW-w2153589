@@ -101,14 +101,24 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
     //State to toggle between viewing all properties and favourites
     const [showFavourites, setShowFavourites] = useState(false);
 
+
+    const [isDraggingOver, setIsDraggingOver] = useState(false); // State to track dragging status
+    
     //Handler for drag over event
     const handleDragOver = (e) => {
         e.preventDefault(); // Prevent default to allow drop
+        setIsDraggingOver(true); // Set dragging state to true
+    }
+
+    const handleDragLeave = (e) => {
+        e.preventDefault();
+        setIsDraggingOver(false); // Set dragging state to false when leaving the drop area
     }
 
     //Handler for drop event
     const handleDrop = (e) => {
         e.preventDefault();
+        setIsDraggingOver(false); // Reset dragging state on drop
 
         //Getting the dragged property ID from the data transfer object
         const draggedPropertyId = e.dataTransfer.getData('propertyId');
