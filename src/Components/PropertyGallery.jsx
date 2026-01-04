@@ -17,6 +17,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
         postcode: ''
     })
 
+
     //Filtering properties based on selected criteria
     const filteredProperties = properties.filter((property) => {
 
@@ -160,6 +161,12 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
             postcode: ''
         });
     }, [viewMode]);
+
+    {/* Hiding favourites section when view mode changes */}
+    useEffect(() => {
+        setShowFavourites(false);
+    }, [viewMode]);
+
     return (
 
         //Main container for the property gallery
