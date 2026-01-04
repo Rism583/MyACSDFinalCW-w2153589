@@ -1,3 +1,8 @@
+/**
+ * TypeWidget.jsx
+ * A React component for rendering a property type selection widget.
+ */
+
 import React from 'react';
 import './Styles/Widgets.css';
 

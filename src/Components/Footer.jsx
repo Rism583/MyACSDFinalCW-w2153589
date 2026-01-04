@@ -1,3 +1,8 @@
+/**
+ * Footer.jsx
+ * A React component for rendering the footer section of the Simply Home application.
+ */
+
 import React from "react";
 import './Styles/Footer.css';
 

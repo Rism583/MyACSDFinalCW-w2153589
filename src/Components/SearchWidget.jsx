@@ -1,3 +1,8 @@
+/** 
+ * SearchWidget.jsx
+ * A React component for rendering a search input widget.
+ */
+
 import React from "react";
 import './Styles/Widgets.css';  
 

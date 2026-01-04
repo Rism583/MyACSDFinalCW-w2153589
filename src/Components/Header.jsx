@@ -1,3 +1,8 @@
+/**
+ * Header.jsx
+ * A React component for rendering the header section of the Simply Home application.
+ */
+
 import React from "react";
 import { NavLink } from "react-router-dom";
 import './Styles/Header.css';

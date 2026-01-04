@@ -1,3 +1,9 @@
+/**
+ * PropertyGallery.jsx
+ * A React component for rendering a gallery of property cards with filtering and favourites functionality.
+ */
+
+
 import React, { use, useEffect, useState } from 'react';
 import PropertyCard from './PropertyCard';
 import './Styles/PropertyGallery.css';

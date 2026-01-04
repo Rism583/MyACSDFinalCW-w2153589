@@ -1,3 +1,8 @@
+/**
+ * PropertySearch.jsx
+ * A React component for rendering the property search filters in the Simply Home application.
+ */
+
 import './Styles/PropertySearch.css';
 import React from 'react';
 import DateWidget from './DateWidget';//importing DateWidget component for date inputs

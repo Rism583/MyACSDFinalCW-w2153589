@@ -1,3 +1,8 @@
+/**
+ * RangeWidget.jsx
+ * A React component for rendering a range input widget.
+ */
+
 import React from "react";
 import './Styles/Widgets.css';
 

@@ -1,3 +1,8 @@
+/**
+ * PropertyCard.jsx
+ * A React component for rendering individual property cards in the Simply Home application.
+ */
+
 import React ,{useState} from 'react';
 import './Styles/PropertyCard.css';
 import { Link } from 'react-router-dom';

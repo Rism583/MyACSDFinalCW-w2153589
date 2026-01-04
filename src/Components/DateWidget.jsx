@@ -1,3 +1,8 @@
+/**
+ * DateWidget.jsx
+ * A React component for rendering a date input widget.
+ */
+
 import React from "react";
 import './Styles/Widgets.css';  
 

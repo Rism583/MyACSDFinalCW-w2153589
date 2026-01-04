@@ -1,3 +1,8 @@
+/**
+ * PropertyPage.jsx
+ * A React component for rendering a detailed property page in the Simply Home application.
+ */
+
 import React from "react";
 import {useState} from "react";
 import { useParams ,Link } from "react-router-dom";
