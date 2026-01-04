@@ -3,6 +3,7 @@ import React from 'react';
 import DateWidget from './DateWidget';//importing DateWidget component for date inputs
 import RangeWidget from './RangeWidget';//importing RangeWidget component for range inputs
 import TypeWidget from './TypeWidget';//importing TypeWidget component for type selection
+import SearchWidget from './SearchWidget';
 
 const PropertySearch = ({filter, setFilter}) => {
 
@@ -31,18 +32,14 @@ const PropertySearch = ({filter, setFilter}) => {
                 onChange={handlefilterChange}
             />
 
-            {/*Input for postcode filter*/}
-            <div className="filter-container">
-                <label htmlFor='postal'>Postcode:</label>
-                <input 
-                    type="text" 
-                    id="postal" 
-                    name="postcode" 
-                    value={filter.postcode} 
-                    onChange={handlefilterChange} 
-                    placeholder="Enter postcode" 
-                />
-            </div>
+            {/*SearchWidget for postcode filter*/}
+            <SearchWidget
+                label="Postcode:"
+                name="postcode"
+                value={filter.postcode}
+                onChange={handlefilterChange}
+                placeholder="Enter postcode: e.g. SE1"
+            />
 
             {/*Dropdowns for bedroom range filter*/}
             <RangeWidget
