@@ -136,7 +136,14 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
 
         //Main container for the property gallery
         <div className="property-gallery">
-            <h1>{viewMode === "search" ? "  Featured Properties" : "Property Gallery"}</h1>
+            <h1>
+                {/* Dynamic heading based on view mode */}
+                {viewMode === "search" 
+                ? "  Featured Properties"
+                :viewMode === "favourites"
+                ? `My Favourites (${favourites.length})`
+                : "Property Gallery"}
+            </h1>
 
             <div className='gallery-layout'>
                 {/* Property Search Component - rendered only in search view mode */}
@@ -144,7 +151,7 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                     <aside className="sidebar-container"> 
                         <PropertySearch filter={filter} setFilter={setFilter} />
 
-                        <button className='reset-filters-btn' onClick={() => {
+                        <button className='clear-filters-btn' onClick={() => {
                             setFilter({
                                 type: 'any',
                                 minPrice: "No Min",
@@ -175,7 +182,6 @@ const PropertyGallery = ({ properties, favourites, addToFavourites, removeFromFa
                         <div className="favorites-container"
                         onDragOver={handleDragOver}
                         onDrop={handleDrop}>
-                            <h2>My Favourites ({favourites.length})</h2>
                             {favourites.length === 0
                                 ? <p className="no-favs-msg">No Favourite properties added yet</p>
                                 : <div className="favs-list">
