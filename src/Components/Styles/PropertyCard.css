@@ -79,12 +79,62 @@
     color: var(--action-magenta); /* ENHANCED: Color shift on hover */
 }
 
+/* Update your existing .property-description with these specific properties */
 .property-description {
     font-size: 1rem;
     color: var(--neutral-charcoal);
     opacity: 0.8;
     line-height: 1.5;
-    transition: opacity 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Match your theme */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines initially */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+/* FIXED: Matches View Favourites button from PropertyGallery */
+.expand-btn {
+    background-color: var(--action-magenta);
+    color: white;
+    padding: 0.6rem 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    border: none;
+    cursor: pointer;
+    width: 40%; /* Makes it full-width for a professional look */
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.expand-btn:hover {
+    background-color: var(--primary-purple);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(61, 1, 72, 0.2);
+}
+
+.expand-btn:active {
+    transform: scale(0.95);
+}
+
+/* FIXED: Description logic for smooth expansion */
+.property-description.show-full {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    max-height: 1000px; 
+    opacity: 1;
+    overflow: visible;
+}
+
+@keyframes expandFade {
+    from { opacity: 0.5; transform: translateY(-5px); }
+    to { opacity: 0.8; transform: translateY(0); }
 }
 
 .property-location {

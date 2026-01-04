@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import './Styles/PropertyCard.css';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,9 @@ const PropertyCard = ({property, addToFavourites, isFavourite}) => {
         //Setting the property ID in the data transfer object
         e.dataTransfer.setData('propertyId', property.id);
     }
+
+    const [isExpanded, setIsExpanded] = useState(false);
+
     return (
         //main container for the property card
         <div className="property-card" draggable="true" onDragStart={handleDragStart}>{/*enabling drag functionality*/}
@@ -23,9 +26,17 @@ const PropertyCard = ({property, addToFavourites, isFavourite}) => {
             {/* Property Details Section */}
             <div className='property-details'>
                 <h3 className = "property-type">{property.type} with {property.bedrooms} bedrooms</h3>
-                <p className = "property-description">{property.description.length > 100 
-                ? property.description.substring(0, 100) + "..." 
-                : property.description} </p>
+                <p className={`property-description ${isExpanded ? 'show-full' : ''}`}>
+                    {property.description}
+                </p>
+                <button
+                    className="expand-btn"
+                    onClick = {(e) => {
+                        e.preventDefault();
+                        setIsExpanded(!isExpanded);
+                    }}>
+                    {isExpanded ? 'Read Less' : 'Read More'}
+                </button>
                 <p className = "property-location">{property.location}</p>
                 <p className = "property-price">£{property.price.toLocaleString()}</p>
                 
