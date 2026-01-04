@@ -12,7 +12,7 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
     const property = properties.find((prop) => prop.id === id);
 
     //State for the main viewer
-    const[mainImage,setMainImage] = useState(property? property.picture : "")
+    const[mainImage,setMainImage] = useState(property ? (property.picture.startsWith('/') ? property.picture : `/${property.picture}`) : '');
 
     //State for active tab (description or details)
     const [activeTab, setActiveTab] = useState('description');
@@ -35,7 +35,7 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
             <div className="main-image-view">
                 {mainImage && (
                     <img 
-                        src = {mainImage.startsWith('/') ? mainImage : `/${mainImage}`}
+                        src = {mainImage}
                         alt="Selected property"
                         className="main-view"
                     />
@@ -43,16 +43,18 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
             </div> 
 
             <div className="thumbnail-row">
-                {[property.picture, ...property.images]
-                .map((imgSrc, index) => ( // Rendering thumbnails
-                    <img 
-                        key={index} 
-                        src={imgSrc.startsWith('/') ? imgSrc : `/${imgSrc}`}
-                        alt={`Thumbnail ${index + 1}`} 
-                        className={`thumb-img ${mainImage === imgSrc ? 'active-thumb' : ''}`}
-                        onClick={() => setMainImage(imgSrc)} // Interaction Logic
-                    />
-                ))}
+                {[property.picture, ...property.images].map((imgSrc, index) => {
+                    const fullPath = imgSrc.startsWith('/') ? imgSrc : `/${imgSrc}`; // Combining main picture with additional images
+                    return (
+                        <img 
+                            key={index} 
+                            src={fullPath}
+                            alt={`Thumbnail ${index + 1}`} 
+                            className={`thumb-img ${mainImage === fullPath ? 'active-thumb' : ''}`}
+                            onClick={() => setMainImage(fullPath)} // Interaction Logic
+                        />
+                    );
+                })}
             </div>
 
             {/* Favourite Button Section */}
@@ -99,7 +101,7 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                                 <li><strong>Type:</strong> {property.type}</li>
                                 <li><strong>Bedrooms:</strong> {property.bedrooms}</li>
                                 <li><strong>Location:</strong> {property.location}</li>
-                                <li><strong>Postcode:</strong> {property.postcode}</li>
+                                <li><strong>Tenure:</strong> {property.tenure}</li>
                                 <li><strong>Price:</strong> £{property.price.toLocaleString()}</li>
                             </ul>
                         </div>

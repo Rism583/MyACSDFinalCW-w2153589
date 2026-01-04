@@ -30,8 +30,8 @@
 }
 
 .prop-header h1 {
-    font-family: var(--font-title);
-    font-size: 2.5rem;
+    font-family: var(--font-body);
+    font-size: 2.3rem;
     color: var(--primary-purple);
     margin-bottom: 30px;
     /* ENHANCED: Subtle text-shadow for depth */
@@ -50,8 +50,11 @@
     overflow: hidden;
     box-shadow: var(--shadow-hover);
     margin-bottom: 20px;
-    background-color: #f0f0f0;
+    background-color: #222;
     transition: box-shadow 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-image-view:hover {
@@ -64,8 +67,9 @@
     object-fit: contain;
     background-color: #222;  
     /* ENHANCED: Slower, cinematic zoom */
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.4s ease-in-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     image-rendering: high-quality;
+    animation: fadeIn 0.6s ease-in;
 }
 
 .main-view:hover {
@@ -222,6 +226,11 @@
 @keyframes contentFade {
     from { opacity: 0; transform: translateX(10px); }
     to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .prop-description p {

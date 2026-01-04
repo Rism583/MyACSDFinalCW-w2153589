@@ -48,7 +48,7 @@ const PropertyCard = ({property, addToFavourites, isFavourite}) => {
                     : <button 
                         className="favourite-button" 
                         onClick={() => addToFavourites(property)}>
-                            Add to Favourites</button>
+                            Add to Favourites 🖤</button>
                     }          
                 </div>
                 
