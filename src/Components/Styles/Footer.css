@@ -68,8 +68,15 @@
     transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.footer-section:hover h4::after {
+.footer-section:hover h4::after, 
+.footer-links:hover h4::after, 
+.footer-contact:hover h4::after {
     width: 100%;
+}
+.footer-section:hover p,
+.footer-links:hover p,
+.footer-contact:hover p {
+    color: rgba(255, 255, 255, 1);
 }
 
 .footer-content p, .footer-content li {

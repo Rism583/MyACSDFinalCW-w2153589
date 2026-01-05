@@ -47,7 +47,7 @@
 }
 
 .app-logo:hover {
-    transform: rotate(8deg) scale(1.1);
+    transform: scale(1.15);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     filter: brightness(1.05);
 }
