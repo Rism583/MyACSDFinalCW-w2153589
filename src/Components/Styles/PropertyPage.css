@@ -293,3 +293,38 @@
         padding-bottom: 5px;
     }
 }
+
+/* Mobile-only fix for Property Details */
+@media (max-width: 600px) {
+  /* 1. Stack the tabs vertically or make them scrollable */
+  .tabs-header {
+    display: flex;
+    overflow-x: auto; /* Allows swiping through tabs if they are long */
+    white-space: nowrap;
+    border-bottom: 2px solid #ddd;
+  }
+
+  /* 2. Style the active tab to be clear on small screens */
+  .tab-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    flex: 1; /* Makes tabs equal width on mobile */
+  }
+
+  /* 3. CRITICAL: Make the floorplan and map fill the width */
+  .tab-content img, 
+  .tab-content .map-container {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100vw;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* 4. Ensure text description doesn't hug the edges */
+  .tab-content p {
+    padding: 15px;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+}
