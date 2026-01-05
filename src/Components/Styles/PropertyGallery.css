@@ -315,3 +315,30 @@ body.dragging {
         transform: translateY(-5px); /* Changed for mobile ergonomics */
     }
 }
+
+/* Mobile fix specifically for Favourites cards */
+@media (max-width: 600px) {
+  .favourite-card {
+    display: flex;
+    flex-direction: column; /* Stacks image above the text */
+    width: 90% !important;   /* Prevents it from being too wide for the screen */
+    max-width: 350px;
+    margin: 15px auto;      /* Centers the card */
+    height: auto !important; /* Allows the card to grow with content */
+    padding: 10px;
+  }
+
+  .favourite-img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  /* Ensures the 'Remove' button is full width and easy to click */
+  .remove-favourite-btn {
+    width: 100% !important;
+    margin-top: 10px;
+    padding: 12px;
+  }
+}
