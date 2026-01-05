@@ -131,7 +131,8 @@ const PropertyPage = ({properties ,favourites, addToFavourites}) => {
                             <iframe
                                 title="Property Location"
                                 src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location + " " + property.postcode)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                                width="150%"
+                                width="100%"
+                                className="map-iframe"
                                 height="450"
                                 style={{ border: 0, borderRadius: '15px' }}
                                 allowFullScreen=""
