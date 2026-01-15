@@ -11,7 +11,7 @@ A fully responsive, professional property search application built with **React*
 * **Flawless UI/UX:** Built with professional CSS transitions, custom tabs, and a fully responsive design for all devices.
 
 ## 🛠️ Installation & Setup
-1. Clone the repository: `git clone [YOUR_REPO_LINK]`
+1. Clone the repository: `git clone [https://github.com/Rism583/MyACSDFinalCW-w2153589.git]`
 2. Install dependencies: `npm install`
 3. Run in development mode: `npm run dev`
 
